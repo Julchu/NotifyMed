@@ -102,7 +102,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="S"/>
                                 <connections>
-                                    <action selector="daySunday:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ub1-vd-Neh"/>
+                                    <action selector="buttonSundayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="URa-OD-wjb"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOk-I9-SOq" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
@@ -110,7 +110,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="M"/>
                                 <connections>
-                                    <action selector="dayMonday:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TiL-ea-fsZ"/>
+                                    <action selector="buttonMondayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nu2-6d-UoL"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Th-ec-2cq" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
@@ -118,7 +118,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="T"/>
                                 <connections>
-                                    <action selector="dayTuesday:" destination="BYZ-38-t0r" eventType="touchUpInside" id="v9T-QY-rX2"/>
+                                    <action selector="buttonTuesdayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VOl-On-mvw"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twA-a3-RXb" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
@@ -126,7 +126,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="W"/>
                                 <connections>
-                                    <action selector="dayWednesday:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fng-S3-Fvu"/>
+                                    <action selector="buttonWednesdayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2t8-MO-vEu"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qyi-AD-h3P" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
@@ -134,7 +134,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="T"/>
                                 <connections>
-                                    <action selector="dayThusday:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IRd-xb-2EX"/>
+                                    <action selector="buttonThusdayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="stm-7T-VPV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ys2-3F-qB2" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
@@ -142,7 +142,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="F"/>
                                 <connections>
-                                    <action selector="dayFriday:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6yG-YA-FsS"/>
+                                    <action selector="buttonFridayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DWI-qc-7YU"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dU5-IK-lva" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
@@ -150,7 +150,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="S"/>
                                 <connections>
-                                    <action selector="daySaturday:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hnX-KT-GzQ"/>
+                                    <action selector="buttonSaturdayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aCF-7w-4fY"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Every" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Trw-la-kbX">
