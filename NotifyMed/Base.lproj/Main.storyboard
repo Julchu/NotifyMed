@@ -39,7 +39,6 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="medicineName" destination="cBd-Wp-LdT" id="g1j-UU-RMZ"/>
-                                            <segue destination="HkZ-7y-Ji8" kind="show" identifier="editViewSegue" id="8QC-Bg-hEz"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -87,11 +86,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="upcomingTableView" destination="dOJ-QU-h3e" id="o1x-CW-2yM"/>
+                        <segue destination="HkZ-7y-Ji8" kind="show" identifier="editViewSegue" id="0ir-cK-uRB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NaL-ty-cSW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1107.2463768115942" y="-277.23214285714283"/>
+            <point key="canvasLocation" x="-1107" y="-277"/>
         </scene>
         <!--Add Reminders-->
         <scene sceneID="tne-QT-ifu">
@@ -246,7 +246,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="FCG-xG-dVs" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-13" y="-277"/>
+            <point key="canvasLocation" x="742" y="-277"/>
         </scene>
         <!--Deleted Reminders-->
         <scene sceneID="yQt-3S-EHS">
@@ -327,11 +327,18 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="m1h-NI-nrm"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Edit" id="huK-gg-jpg"/>
+                    <navigationItem key="navigationItem" title="Edit" id="huK-gg-jpg">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="iJg-m7-JYA"/>
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="Sd0-rB-zY1">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="show" id="fdi-gq-ooE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="geY-Nw-LkY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-13" y="448"/>
+            <point key="canvasLocation" x="-9" y="448"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bc0-Qd-whQ">
@@ -350,4 +357,7 @@
             <point key="canvasLocation" x="-2049" y="-277"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="fdi-gq-ooE"/>
+    </inferredMetricsTieBreakers>
 </document>
