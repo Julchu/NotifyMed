@@ -16,23 +16,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dOJ-QU-h3e" customClass="UpcomingView" customModule="NotifyMed" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dOJ-QU-h3e">
                                 <rect key="frame" x="0.0" y="466" width="414" height="396"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="tqS-oy-Q78">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UpcomingIdentifier" id="tqS-oy-Q78" customClass="MedicineInfoCell" customModule="NotifyMed" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tqS-oy-Q78" id="gwh-4d-f1q">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Take Medicine Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBd-Wp-LdT">
+                                                    <rect key="frame" x="20" y="0.0" width="386" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="HkZ-7y-Ji8" kind="show" id="c7z-OU-SQP"/>
+                                            <outlet property="medicineName" destination="cBd-Wp-LdT" id="g1j-UU-RMZ"/>
+                                            <segue destination="HkZ-7y-Ji8" kind="show" identifier="editViewSegue" id="8QC-Bg-hEz"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="uqe-bw-YeI" id="wyN-Ex-nQc"/>
+                                    <outlet property="delegate" destination="uqe-bw-YeI" id="Z8d-d7-IBI"/>
+                                </connections>
                             </tableView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Cs4-3q-6eB" customClass="CalendarView" customModule="NotifyMed" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="88" width="414" height="380"/>
@@ -45,7 +59,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="a5I-mQ-hhL">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CalendarIdentifier" id="a5I-mQ-hhL">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="8z0-Zj-Cyv">
@@ -67,10 +81,13 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add" id="NP3-6I-NRX">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" id="ECy-Bt-bxM"/>
+                                <segue destination="BYZ-38-t0r" kind="show" id="IsO-Za-qGm"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="upcomingTableView" destination="dOJ-QU-h3e" id="o1x-CW-2yM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NaL-ty-cSW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -84,19 +101,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Reminder Label" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZER-dl-RZc">
-                                <rect key="frame" x="135" y="117" width="201" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6lV-XG-0gW">
-                                <rect key="frame" x="77" y="123" width="50" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sXh-Km-OIJ" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
                                 <rect key="frame" x="78" y="186" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -195,6 +199,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Reminder Label" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZER-dl-RZc">
+                                <rect key="frame" x="173" y="123" width="201" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Medicine Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6lV-XG-0gW">
+                                <rect key="frame" x="41" y="130" width="124" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -220,34 +237,34 @@
                         <outlet property="buttonThursday" destination="Qyi-AD-h3P" id="P4Y-Oh-xP6"/>
                         <outlet property="buttonTuesday" destination="2Th-ec-2cq" id="vW7-fB-KmI"/>
                         <outlet property="buttonWednesday" destination="twA-a3-RXb" id="XXk-VR-Isz"/>
+                        <outlet property="pickerEnd" destination="wxf-mp-3p8" id="cJP-If-EA9"/>
+                        <outlet property="pickerStart" destination="wpG-33-JRq" id="6DZ-Bt-MKP"/>
                         <outlet property="textFrequency" destination="xZC-MK-DV0" id="oTs-es-hya"/>
-                        <outlet property="textReminderName" destination="ZER-dl-RZc" id="FMu-zi-ddz"/>
+                        <outlet property="textMedicineName" destination="ZER-dl-RZc" id="aSC-ev-oby"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="FCG-xG-dVs" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-13.043478260869566" y="-276.5625"/>
+            <point key="canvasLocation" x="-13" y="-277"/>
         </scene>
         <!--Deleted Reminders-->
         <scene sceneID="yQt-3S-EHS">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AQC-sc-CDj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tableViewController id="8gr-1h-Qbn" userLabel="Deleted Reminders" customClass="DeletedViewController" customModule="NotifyMed" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="qsu-Gv-0VY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="LdW-KA-5s8">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DeleteIdentifier" id="LdW-KA-5s8">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LdW-KA-5s8" id="eMD-7i-2wd">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="HkZ-7y-Ji8" kind="show" id="2ho-MZ-Tyy"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -257,7 +274,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="TtT-ao-LvG"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AQC-sc-CDj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1107" y="1142"/>
         </scene>
@@ -284,7 +300,11 @@
                         <viewLayoutGuide key="safeArea" id="DKn-7S-SCk"/>
                     </view>
                     <navigationItem key="navigationItem" id="mJ8-UY-5tb">
-                        <barButtonItem key="leftBarButtonItem" title="Upcoming" id="l0e-fY-5Ga"/>
+                        <barButtonItem key="leftBarButtonItem" title="Upcoming" id="l0e-fY-5Ga">
+                            <connections>
+                                <segue destination="t3k-P7-jMj" kind="unwind" unwindAction="unwindToUpcomingViewControllerWithSegue:" id="mXb-Hd-Skl"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Deleted" id="wgz-Ti-hsx">
                             <connections>
                                 <segue destination="8gr-1h-Qbn" kind="show" id="Ra6-ev-OZv"/>
@@ -293,6 +313,7 @@
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LPf-bR-fbA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="t3k-P7-jMj" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-1107" y="448"/>
         </scene>
@@ -329,7 +350,4 @@
             <point key="canvasLocation" x="-2049" y="-277"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="c7z-OU-SQP"/>
-    </inferredMetricsTieBreakers>
 </document>

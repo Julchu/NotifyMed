@@ -8,9 +8,9 @@
 
 import UIKit
 
-class AddViewController: UIViewController {
-	private let imageTrue = "PickedDay.png"
-	
+class AddViewController: UIViewController, UITextFieldDelegate {
+	@IBOutlet weak var buttonSave: UIBarButtonItem!
+	@IBOutlet weak var textMedicineName: UITextField!
 	@IBOutlet weak var buttonSunday: Checkbox!
 	@IBOutlet weak var buttonMonday: Checkbox!
 	@IBOutlet weak var buttonTuesday: Checkbox!
@@ -18,9 +18,9 @@ class AddViewController: UIViewController {
 	@IBOutlet weak var buttonThursday: Checkbox!
 	@IBOutlet weak var buttonFriday: Checkbox!
 	@IBOutlet weak var buttonSaturday: Checkbox!
-	@IBOutlet weak var textReminderName: UITextField!
 	@IBOutlet weak var textFrequency: UITextField!
-	@IBOutlet weak var buttonSave: UIBarButtonItem!
+	@IBOutlet weak var pickerStart: UIDatePicker!
+	@IBOutlet weak var pickerEnd: UIDatePicker!
 	
 	@IBAction func buttonSundayPressed(_ sender: Checkbox) {
 		buttonSunday.toggle()
@@ -54,9 +54,16 @@ class AddViewController: UIViewController {
 		
 	}
 	
+	var medicineAdded: Medicine!
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-				
+		textMedicineName.delegate = self
+		
+	}
+	
+	func getMedicine() -> Medicine {
+		return Medicine(medicineName: textMedicineName.text!, frequency: textFrequency.text!, startDate: pickerStart.date, endDate: pickerEnd.date)!
 	}
 
 }

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		B91C24BB242CAA50005C2B4C /* UpcomingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91C24BA242CAA50005C2B4C /* UpcomingViewController.swift */; };
+		B91C24BD242D62D9005C2B4C /* Medicine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91C24BC242D62D9005C2B4C /* Medicine.swift */; };
+		B91C24BF242D7241005C2B4C /* MedicineCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91C24BE242D7241005C2B4C /* MedicineCollection.swift */; };
+		B91C24C1242D8B67005C2B4C /* SharingMedicineCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91C24C0242D8B67005C2B4C /* SharingMedicineCollection.swift */; };
 		B95C25D8242C6C54004516F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C25D7242C6C54004516F1 /* AppDelegate.swift */; };
 		B95C25DA242C6C54004516F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C25D9242C6C54004516F1 /* SceneDelegate.swift */; };
 		B95C25DC242C6C54004516F1 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C25DB242C6C54004516F1 /* AddViewController.swift */; };
@@ -20,12 +23,14 @@
 		B95C2600242C8A4F004516F1 /* AllRemindersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C25FF242C8A4F004516F1 /* AllRemindersView.swift */; };
 		B95C2602242C8A68004516F1 /* DismissedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C2601242C8A68004516F1 /* DismissedView.swift */; };
 		B95C2604242C8A8A004516F1 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C2603242C8A8A004516F1 /* CalendarView.swift */; };
-		B95C2606242C8B07004516F1 /* UpcomingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C2605242C8B07004516F1 /* UpcomingView.swift */; };
 		B95C260A242C93AA004516F1 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C2609242C93AA004516F1 /* Checkbox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B91C24BA242CAA50005C2B4C /* UpcomingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingViewController.swift; sourceTree = "<group>"; };
+		B91C24BC242D62D9005C2B4C /* Medicine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medicine.swift; sourceTree = "<group>"; };
+		B91C24BE242D7241005C2B4C /* MedicineCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineCollection.swift; sourceTree = "<group>"; };
+		B91C24C0242D8B67005C2B4C /* SharingMedicineCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingMedicineCollection.swift; sourceTree = "<group>"; };
 		B95C25D4242C6C54004516F1 /* NotifyMed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotifyMed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B95C25D7242C6C54004516F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B95C25D9242C6C54004516F1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,7 +45,6 @@
 		B95C25FF242C8A4F004516F1 /* AllRemindersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRemindersView.swift; sourceTree = "<group>"; };
 		B95C2601242C8A68004516F1 /* DismissedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissedView.swift; sourceTree = "<group>"; };
 		B95C2603242C8A8A004516F1 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
-		B95C2605242C8B07004516F1 /* UpcomingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingView.swift; sourceTree = "<group>"; };
 		B95C2609242C93AA004516F1 /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,10 +105,12 @@
 		B95C2608242C9361004516F1 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				B91C24C0242D8B67005C2B4C /* SharingMedicineCollection.swift */,
+				B91C24BE242D7241005C2B4C /* MedicineCollection.swift */,
+				B91C24BC242D62D9005C2B4C /* Medicine.swift */,
 				B95C2603242C8A8A004516F1 /* CalendarView.swift */,
 				B95C25FF242C8A4F004516F1 /* AllRemindersView.swift */,
 				B95C2601242C8A68004516F1 /* DismissedView.swift */,
-				B95C2605242C8B07004516F1 /* UpcomingView.swift */,
 				B95C2609242C93AA004516F1 /* Checkbox.swift */,
 			);
 			path = Objects;
@@ -182,9 +188,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B91C24BB242CAA50005C2B4C /* UpcomingViewController.swift in Sources */,
+				B91C24BD242D62D9005C2B4C /* Medicine.swift in Sources */,
 				B95C2604242C8A8A004516F1 /* CalendarView.swift in Sources */,
 				B95C2602242C8A68004516F1 /* DismissedView.swift in Sources */,
-				B95C2606242C8B07004516F1 /* UpcomingView.swift in Sources */,
+				B91C24C1242D8B67005C2B4C /* SharingMedicineCollection.swift in Sources */,
 				B95C25F8242C82F9004516F1 /* EditViewController.swift in Sources */,
 				B95C25FE242C89FA004516F1 /* AllViewController.swift in Sources */,
 				B95C25F6242C82A0004516F1 /* DeletedViewController.swift in Sources */,
@@ -193,6 +200,7 @@
 				B95C25D8242C6C54004516F1 /* AppDelegate.swift in Sources */,
 				B95C2600242C8A4F004516F1 /* AllRemindersView.swift in Sources */,
 				B95C25DA242C6C54004516F1 /* SceneDelegate.swift in Sources */,
+				B91C24BF242D7241005C2B4C /* MedicineCollection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
