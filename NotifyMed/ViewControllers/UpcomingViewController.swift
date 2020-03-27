@@ -9,7 +9,6 @@
 import UIKit
 
 let customCellIdentifier = "UpcomingIdentifier"
-let segueID = "editViewSegue"
 var sharedMedicineCollection: MedicineCollection?
 
 class MedicineInfoCell: UITableViewCell {
@@ -58,7 +57,7 @@ class UpcomingViewController: UIViewController, UITableViewDelegate, UITableView
 //	Clicking on cell
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
-		performSegue(withIdentifier: segueID, sender: sharedMedicineCollection?.collection[indexPath.row])
+		performSegue(withIdentifier: "infoViewSegue", sender: sharedMedicineCollection?.collection[indexPath.row])
 		sharedMedicineCollection?.setCurrentIndex(index: indexPath.row)
 	}
 
@@ -77,7 +76,7 @@ class UpcomingViewController: UIViewController, UITableViewDelegate, UITableView
 			let medicine = addViewController.getMedicine()
 			sharedMedicineCollection?.addMedicine(medicineObj: medicine)
 			upcomingTableView.reloadData()
-		} else if segue.source is EditViewController {
+		} else if segue.source is InfoViewController {
 			upcomingTableView.reloadData()
 		}
 	}

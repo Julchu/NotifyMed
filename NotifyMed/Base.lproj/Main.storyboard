@@ -75,18 +75,18 @@
                     <navigationItem key="navigationItem" title="Upcoming Reminders" id="wJD-w3-d3S">
                         <barButtonItem key="leftBarButtonItem" title="All" id="CPf-dO-SIk">
                             <connections>
-                                <segue destination="QBM-F7-cuX" kind="show" id="zhO-jN-0EG"/>
+                                <segue destination="QBM-F7-cuX" kind="show" identifier="allViewSegue" id="zhO-jN-0EG"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add" id="NP3-6I-NRX">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" id="IsO-Za-qGm"/>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="addViewSegue" id="IsO-Za-qGm"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="upcomingTableView" destination="dOJ-QU-h3e" id="o1x-CW-2yM"/>
-                        <segue destination="HkZ-7y-Ji8" kind="show" identifier="editViewSegue" id="0ir-cK-uRB"/>
+                        <segue destination="HkZ-7y-Ji8" kind="show" identifier="infoViewSegue" id="0ir-cK-uRB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NaL-ty-cSW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -219,7 +219,7 @@
                     <navigationItem key="navigationItem" title="Add Reminder" id="r43-LW-iT9">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="Pdj-eL-T3N">
                             <connections>
-                                <segue destination="FCG-xG-dVs" kind="unwind" unwindAction="unwindToUpcomingViewControllerWithSegue:" id="idQ-cE-5qe"/>
+                                <segue destination="FCG-xG-dVs" kind="unwind" unwindAction="unwindToUpcomingViewControllerWithSegue:" id="mP3-tn-ECr"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="Msf-jY-srM">
@@ -246,7 +246,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="FCG-xG-dVs" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="742" y="-277"/>
+            <point key="canvasLocation" x="-178" y="-277"/>
         </scene>
         <!--Deleted Reminders-->
         <scene sceneID="yQt-3S-EHS">
@@ -307,7 +307,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Deleted" id="wgz-Ti-hsx">
                             <connections>
-                                <segue destination="8gr-1h-Qbn" kind="show" id="Ra6-ev-OZv"/>
+                                <segue destination="8gr-1h-Qbn" kind="show" identifier="dismissedViewSegue" id="Ra6-ev-OZv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -320,25 +320,318 @@
         <!--Edit Reminders-->
         <scene sceneID="Fn8-DB-DHB">
             <objects>
-                <viewController id="HkZ-7y-Ji8" userLabel="Edit Reminders" customClass="EditViewController" customModule="NotifyMed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="HkZ-7y-Ji8" userLabel="Edit Reminders" customClass="InfoViewController" customModule="NotifyMed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mBP-0C-uf8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Medicine Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6M-qa-4UO">
+                                <rect key="frame" x="41" y="130" width="124" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7f1-2X-fka" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
+                                <rect key="frame" x="78" y="186" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="S"/>
+                                <connections>
+                                    <action selector="buttonSundayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h2D-xO-k4R"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n9C-ff-ull" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
+                                <rect key="frame" x="116" y="186" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="M"/>
+                                <connections>
+                                    <action selector="buttonMondayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2hE-a5-f7U"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ga-pM-Vt9" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
+                                <rect key="frame" x="154" y="186" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="T"/>
+                                <connections>
+                                    <action selector="buttonTuesdayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aZO-sw-SSh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dBS-ho-hOK" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
+                                <rect key="frame" x="192" y="186" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="W"/>
+                                <connections>
+                                    <action selector="buttonWednesdayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oE0-fs-CUU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qbC-Ta-RGm" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
+                                <rect key="frame" x="230" y="186" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="T"/>
+                                <connections>
+                                    <action selector="buttonThusdayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zbE-dL-Rd7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0xC-dT-sBA" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
+                                <rect key="frame" x="268" y="186" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="F"/>
+                                <connections>
+                                    <action selector="buttonFridayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tEU-zV-P8F"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SAj-NM-cup" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
+                                <rect key="frame" x="306" y="186" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="S"/>
+                                <connections>
+                                    <action selector="buttonSaturdayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IQr-8B-qxZ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Every" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AKw-OI-Znx">
+                                <rect key="frame" x="140" y="255" width="43" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Starting Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eSc-QS-qKv">
+                                <rect key="frame" x="63" y="327" width="106" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ending Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="umP-0o-ja3">
+                                <rect key="frame" x="71" y="393" width="98" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="day(s)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PnP-qi-yc6">
+                                <rect key="frame" x="230" y="255" width="49" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Start Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GF4-p5-WPL">
+                                <rect key="frame" x="196" y="327" width="155" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="End Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfu-rB-5ec">
+                                <rect key="frame" x="196" y="393" width="155" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ml7-Iw-5XF">
+                                <rect key="frame" x="141" y="585" width="17" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="mic" catalog="system"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tzT-cP-UwB">
+                                <rect key="frame" x="264" y="585" width="24" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="film" catalog="system"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reminder Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JIO-ho-DMS">
+                                <rect key="frame" x="173" y="123" width="201" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dismiss Reminder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xYc-JB-gnI">
+                                <rect key="frame" x="139" y="514" width="137" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0C7-bp-lt0">
+                                <rect key="frame" x="200" y="255" width="15" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="m1h-NI-nrm"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Edit" id="huK-gg-jpg">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="iJg-m7-JYA"/>
+                    <navigationItem key="navigationItem" title="Info" id="huK-gg-jpg">
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="Sd0-rB-zY1">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" id="fdi-gq-ooE"/>
+                                <segue destination="j8C-c8-ryh" kind="show" identifier="editViewSegue" id="16e-Xm-T14"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="buttonFriday" destination="0xC-dT-sBA" id="Uui-a1-rQO"/>
+                        <outlet property="buttonMonday" destination="n9C-ff-ull" id="PZM-ZL-bar"/>
+                        <outlet property="buttonSaturday" destination="SAj-NM-cup" id="4Ft-Xb-0sd"/>
+                        <outlet property="buttonSave" destination="Sd0-rB-zY1" id="FZG-lc-n8D"/>
+                        <outlet property="buttonSunday" destination="7f1-2X-fka" id="sdY-XF-QxI"/>
+                        <outlet property="buttonThursday" destination="qbC-Ta-RGm" id="go6-OQ-cSH"/>
+                        <outlet property="buttonTuesday" destination="6ga-pM-Vt9" id="sDj-GQ-O0P"/>
+                        <outlet property="buttonVideoRecording" destination="tzT-cP-UwB" id="8Nh-eT-oyb"/>
+                        <outlet property="buttonVoiceRecording" destination="Ml7-Iw-5XF" id="U0A-TS-B9D"/>
+                        <outlet property="buttonWednesday" destination="dBS-ho-hOK" id="drC-Sd-Ln4"/>
+                        <outlet property="infoView" destination="mBP-0C-uf8" id="wpA-le-rnu"/>
+                        <outlet property="labelEnd" destination="kfu-rB-5ec" id="Zyf-z6-NMu"/>
+                        <outlet property="labelFrequency" destination="0C7-bp-lt0" id="JUo-qH-Ck9"/>
+                        <outlet property="labelMedicineName" destination="JIO-ho-DMS" id="YgZ-7D-ter"/>
+                        <outlet property="labelStart" destination="GF4-p5-WPL" id="ZCy-ie-Ulo"/>
+                        <segue destination="dlx-5P-QMa" kind="unwind" identifier="unwindToUpcomingViewControllerIdentifier" unwindAction="unwindToUpcomingViewControllerWithSegue:" id="Sbn-0X-hjK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="geY-Nw-LkY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="dlx-5P-QMa" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-9" y="448"/>
+            <point key="canvasLocation" x="-178.2608695652174" y="447.99107142857139"/>
+        </scene>
+        <!--Edit-->
+        <scene sceneID="VHH-L5-sob">
+            <objects>
+                <viewController id="j8C-c8-ryh" customClass="EditViewController" customModule="NotifyMed" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jzP-t4-YRF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Reminder Label" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L9M-OS-1eX">
+                                <rect key="frame" x="173" y="123" width="201" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Medicine Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZE-5M-X2Y">
+                                <rect key="frame" x="41" y="130" width="124" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D9k-qa-1ft" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
+                                <rect key="frame" x="78" y="186" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="S"/>
+                                <connections>
+                                    <action selector="buttonSundayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MCb-we-kxj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F9C-YO-Jmh" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
+                                <rect key="frame" x="116" y="186" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="M"/>
+                                <connections>
+                                    <action selector="buttonMondayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ux4-k3-nJm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q8M-Zt-Gjl" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
+                                <rect key="frame" x="154" y="186" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="T"/>
+                                <connections>
+                                    <action selector="buttonTuesdayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fCa-L1-PBs"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jR2-5e-s7t" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
+                                <rect key="frame" x="192" y="186" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="W"/>
+                                <connections>
+                                    <action selector="buttonWednesdayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qy9-MW-yDL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yjn-gv-ebI" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
+                                <rect key="frame" x="230" y="186" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="T"/>
+                                <connections>
+                                    <action selector="buttonThusdayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YGH-Rt-prR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hP5-nh-6wW" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
+                                <rect key="frame" x="268" y="186" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="F"/>
+                                <connections>
+                                    <action selector="buttonFridayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S6P-Gh-FA2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rae-7y-Yao" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
+                                <rect key="frame" x="306" y="186" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="S"/>
+                                <connections>
+                                    <action selector="buttonSaturdayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bf7-Dx-5iM"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Every" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rn4-WK-x3f">
+                                <rect key="frame" x="140" y="255" width="43" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sA7-kw-Oxp">
+                                <rect key="frame" x="191" y="250" width="33" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Starting Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MEZ-8t-RFo">
+                                <rect key="frame" x="154" y="334" width="106" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ending Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mqu-rd-9B2">
+                                <rect key="frame" x="158" y="587" width="98" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="6E3-28-QvM">
+                                <rect key="frame" x="0.0" y="363" width="414" height="216"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </datePicker>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="uxS-6w-2xq">
+                                <rect key="frame" x="0.0" y="616" width="414" height="216"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="day(s)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="taG-ZA-bdw">
+                                <rect key="frame" x="230" y="255" width="49" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Cwu-Sk-m33"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit" id="XeY-gX-a4L">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="VtR-8u-aNT" userLabel="efefef">
+                            <connections>
+                                <segue destination="2qU-QU-uI2" kind="unwind" unwindAction="unwindToInfoViewControllerWithSegue:" id="KNR-me-Yvt"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="aZA-DC-vbE"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MZ6-aJ-uzc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="2qU-QU-uI2" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="748" y="448"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bc0-Qd-whQ">
@@ -357,7 +650,8 @@
             <point key="canvasLocation" x="-2049" y="-277"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="fdi-gq-ooE"/>
-    </inferredMetricsTieBreakers>
+    <resources>
+        <image name="film" catalog="system" width="64" height="46"/>
+        <image name="mic" catalog="system" width="54" height="64"/>
+    </resources>
 </document>

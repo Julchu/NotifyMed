@@ -13,15 +13,15 @@ class Checkbox: UIButton {
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		draw()
+		draw(toggled: self.toggled)
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-		draw()
+		draw(toggled: self.toggled)
 	}
 	
-	func draw() {
+	func draw(toggled: Bool) {
 //		Making button a blue circle w/ white text (circle: 2, rounded: 4)
 		let titleColor = toggled ? UIColor.white : .systemBlue
 		let backgroundColor = toggled ? UIColor.systemBlue : .clear
@@ -36,7 +36,11 @@ class Checkbox: UIButton {
 
 	func toggle() {
 		self.toggled = !toggled
-		draw()
+		draw(toggled: self.toggled)
+	}
+	
+	func getBool() -> Bool {
+		return self.toggled
 	}
 
 	

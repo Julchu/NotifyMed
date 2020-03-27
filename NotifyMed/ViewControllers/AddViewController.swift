@@ -63,8 +63,8 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	}
 	
 	func getMedicine() -> Medicine {
-		return Medicine(medicineName: textMedicineName.text!, frequency: textFrequency.text!, startDate: pickerStart.date, endDate: pickerEnd.date)!
+		let days = [buttonSunday.getBool(), buttonMonday.getBool(), buttonTuesday.getBool(), buttonWednesday.getBool(), buttonThursday.getBool(), buttonFriday.getBool(), buttonSaturday.getBool()]
+		return Medicine(medicineName: textMedicineName.text!, days: days, frequency: textFrequency.text!, startDate: pickerStart.date, endDate: pickerEnd.date)!
 	}
-
 }
 

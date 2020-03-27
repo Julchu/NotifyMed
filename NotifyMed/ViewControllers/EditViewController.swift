@@ -15,7 +15,7 @@ class EditViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    
+//	sharedMedicineCollection.
 
     /*
     // MARK: - Navigation
@@ -27,4 +27,7 @@ class EditViewController: UIViewController {
     }
     */
 
+//	func getMedicine() -> Medicine {
+////		return Medicine(medicineName: textMedicineName.text!, frequency: textFrequency.text!, startDate: pickerStart.date, endDate: pickerEnd.date)!
+//	}
 }

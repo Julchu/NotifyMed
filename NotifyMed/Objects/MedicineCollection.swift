@@ -78,10 +78,10 @@ class MedicineCollection: NSObject, NSCoding {
 	}
 	
 	func setup() {
-		self.collection.append(Medicine(medicineName: "Test Medicine 1", frequency: "2", startDate: Date(), endDate: Date())!)
-		self.collection.append(Medicine(medicineName: "Test Medicine 2", frequency: "2", startDate: Date(), endDate: Date())!)
-		self.collection.append(Medicine(medicineName: "Test Medicine 3", frequency: "2", startDate: Date(), endDate: Date())!)
-		self.collection.append(Medicine(medicineName: "Test Medicine 4", frequency: "2", startDate: Date(), endDate: Date())!)
+		self.collection.append(Medicine(medicineName: "Test Medicine 1", days: [true, false, true, false, true, false, true], frequency: "1", startDate: Date(), endDate: Date())!)
+		self.collection.append(Medicine(medicineName: "Test Medicine 2", days: [false, false, false, false, false, false, false], frequency: "2", startDate: Date(), endDate: Date())!)
+		self.collection.append(Medicine(medicineName: "Test Medicine 3", days: [true, true, true, true, true, true, true], frequency: "3", startDate: Date(), endDate: Date())!)
+		self.collection.append(Medicine(medicineName: "Test Medicine 4", days: [false, true, false, true, false, true, false], frequency: "4", startDate: Date(), endDate: Date())!)
 	}
 }
 
