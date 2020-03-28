@@ -46,7 +46,7 @@ class Medicine: NSObject, NSCoding {
 		let frequencyDecoded = (decoder.decodeObject(forKey: Keys.frequency) as? String)!
 		let startDateDecoded = (decoder.decodeObject(forKey: Keys.startDate) as? Date)!
 		let endDateDecoded = (decoder.decodeObject(forKey: Keys.endDate) as? Date)!
-		let dismissedDecoded = (decoder.decodeObject(forKey: Keys.dismissed) as? Bool)!
+		let dismissedDecoded = decoder.decodeBool(forKey: Keys.dismissed)
 		
 		self.init(medicineName: medicineNameDecoded, days: daysDecoded, frequency: frequencyDecoded , startDate: startDateDecoded , endDate: endDateDecoded, dismissed: dismissedDecoded)
 	}
