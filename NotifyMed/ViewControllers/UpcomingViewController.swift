@@ -22,7 +22,7 @@ class UpcomingViewController: UIViewController, UITableViewDelegate, UITableView
 		super.viewDidLoad()
 		upcomingTableView.delegate = self
 		upcomingTableView.dataSource = self
-		
+	
 		_ = SharingMedicineCollection()
 		SharingMedicineCollection.sharedMedicineCollection.medicineCollection = MedicineCollection()
 		SharingMedicineCollection.sharedMedicineCollection.loadMedicineCollection()
@@ -73,8 +73,7 @@ class UpcomingViewController: UIViewController, UITableViewDelegate, UITableView
 	
 	@IBAction func unwindToUpcomingViewController(segue: UIStoryboardSegue) {
 		if let addViewController = segue.source as? AddViewController {
-			let medicine = addViewController.getMedicine()
-			sharedMedicineCollection?.addMedicine(medicineObj: medicine)
+			sharedMedicineCollection?.addMedicine(medicineObj: addViewController.getMedicine())
 			upcomingTableView.reloadData()
 		} else if segue.source is InfoViewController {
 			upcomingTableView.reloadData()

@@ -204,6 +204,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="returnPressed:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="wvS-Yp-Tfy"/>
+                                    <action selector="screenTapped:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="Mgt-kj-jXj"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Medicine Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6lV-XG-0gW">
                                 <rect key="frame" x="41" y="130" width="124" height="21"/>
@@ -219,16 +223,19 @@
                     <navigationItem key="navigationItem" title="Add Reminder" id="r43-LW-iT9">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="Pdj-eL-T3N">
                             <connections>
+                                <action selector="cancelPressed:" destination="BYZ-38-t0r" id="VrH-35-sde"/>
                                 <segue destination="FCG-xG-dVs" kind="unwind" unwindAction="unwindToUpcomingViewControllerWithSegue:" id="mP3-tn-ECr"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="Msf-jY-srM">
                             <connections>
                                 <action selector="buttonSavePressed:" destination="BYZ-38-t0r" id="FcA-Ph-inh"/>
+                                <segue destination="FCG-xG-dVs" kind="unwind" unwindAction="unwindToUpcomingViewControllerWithSegue:" id="8aq-LP-UU4"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="buttonCancel" destination="Pdj-eL-T3N" id="QOJ-u2-szy"/>
                         <outlet property="buttonFriday" destination="ys2-3F-qB2" id="nSI-za-mJL"/>
                         <outlet property="buttonMonday" destination="UOk-I9-SOq" id="KzH-YM-r1j"/>
                         <outlet property="buttonSaturday" destination="dU5-IK-lva" id="pAp-R7-vj3"/>
@@ -251,7 +258,6 @@
         <!--Deleted Reminders-->
         <scene sceneID="yQt-3S-EHS">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AQC-sc-CDj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tableViewController id="8gr-1h-Qbn" userLabel="Deleted Reminders" customClass="DeletedViewController" customModule="NotifyMed" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="qsu-Gv-0VY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -274,6 +280,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="TtT-ao-LvG"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AQC-sc-CDj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1107" y="1142"/>
         </scene>

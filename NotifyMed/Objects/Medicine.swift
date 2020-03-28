@@ -16,6 +16,7 @@ class Medicine: NSObject, NSCoding {
 	private var frequency: String
 	private var startDate: Date
 	private var endDate: Date
+	private var dismissed: Bool
 	
 	struct Keys {
 		static let medicineName = "medicineName"
@@ -23,6 +24,7 @@ class Medicine: NSObject, NSCoding {
 		static let frequency = "frequency"
 		static let startDate = "startDate"
 		static let endDate = "endDate"
+		static let dismissed = "dismissed"
 	}
 	
 	func encode(with coder: NSCoder) {
@@ -31,6 +33,7 @@ class Medicine: NSObject, NSCoding {
 		coder.encode(frequency, forKey: Keys.frequency)
 		coder.encode(startDate, forKey: Keys.startDate)
 		coder.encode(endDate, forKey: Keys.endDate)
+		coder.encode(dismissed, forKey: Keys.dismissed)
 	}
 	
 	required convenience init?(coder decoder: NSCoder) {
@@ -43,16 +46,18 @@ class Medicine: NSObject, NSCoding {
 		let frequencyDecoded = (decoder.decodeObject(forKey: Keys.frequency) as? String)!
 		let startDateDecoded = (decoder.decodeObject(forKey: Keys.startDate) as? Date)!
 		let endDateDecoded = (decoder.decodeObject(forKey: Keys.endDate) as? Date)!
+		let dismissedDecoded = (decoder.decodeObject(forKey: Keys.dismissed) as? Bool)!
 		
-		self.init(medicineName: medicineNameDecoded, days: daysDecoded, frequency: frequencyDecoded , startDate: startDateDecoded , endDate: endDateDecoded)
+		self.init(medicineName: medicineNameDecoded, days: daysDecoded, frequency: frequencyDecoded , startDate: startDateDecoded , endDate: endDateDecoded, dismissed: dismissedDecoded)
 	}
 	
-	init?(medicineName: String, days: [Bool], frequency: String, startDate: Date, endDate: Date) {
+	init?(medicineName: String, days: [Bool], frequency: String, startDate: Date, endDate: Date, dismissed: Bool) {
 		self.medicineName = medicineName
 		self.frequency = frequency
 		self.startDate = startDate
 		self.endDate = endDate
 		self.days = days
+		self.dismissed = dismissed
 	}
 	
 	func changeName(medicineName: String) {
@@ -77,5 +82,9 @@ class Medicine: NSObject, NSCoding {
 	
 	func getEndDate() -> Date {
 		return self.endDate
+	}
+	
+	func isDismissed() -> Bool {
+		return self.dismissed
 	}
 }

@@ -25,6 +25,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		// This occurs shortly after the scene enters the background, or when its session is discarded.
 		// Release any resources associated with this scene that can be re-created the next time the scene connects.
 		// The scene may re-connect later, as its session was not neccessarily discarded (see `application:didDiscardSceneSessions` instead).
+		_ = SharingMedicineCollection()
+		SharingMedicineCollection.sharedMedicineCollection.medicineCollection = sharedMedicineCollection
+		SharingMedicineCollection.sharedMedicineCollection.saveMedicineCollection()
 	}
 
 	func sceneDidBecomeActive(_ scene: UIScene) {
@@ -46,8 +49,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		// Called as the scene transitions from the foreground to the background.
 		// Use this method to save data, release shared resources, and store enough scene-specific state information
 		// to restore the scene back to its current state.
+		(UIApplication.shared.delegate as? AppDelegate)?.saveContext()
 	}
-
-
 }
 
