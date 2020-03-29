@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import os.log
 
 let upcomingCellIdentifier = "UpcomingIdentifier"
 var sharedMedicineCollection: MedicineCollection?
@@ -16,6 +17,7 @@ class UpcomingInfoCell: UITableViewCell {
 }
 
 class UpcomingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+	
 	@IBOutlet weak var upcomingTableView: UITableView!
 	
 	override func viewDidLoad() {
@@ -29,6 +31,7 @@ class UpcomingViewController: UIViewController, UITableViewDelegate, UITableView
 		sharedMedicineCollection = SharingMedicineCollection.sharedMedicineCollection.medicineCollection
 	}
 	
+//	MARK: - TableView
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return (sharedMedicineCollection?.getUpcomingCount())!
 	}
@@ -73,11 +76,11 @@ class UpcomingViewController: UIViewController, UITableViewDelegate, UITableView
 	
 	@IBAction func unwindToViewController(segue: UIStoryboardSegue) {
 		if segue.source is AddViewController {
-			print("from add view controller")
-			upcomingTableView.reloadData()
+			os_log("From AddViewController in UpcomingViewController")
 		} else if segue.source is InfoViewController {
-			print("from info view controller")
-			upcomingTableView.reloadData()
+			os_log("From InfoViewController in UpcomingViewController")
 		}
+		os_log("To UpcomingViewController")
+		upcomingTableView.reloadData()
 	}
 }

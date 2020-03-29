@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import os.log
 
 class InfoViewController: UIViewController {
 	
@@ -30,23 +31,23 @@ class InfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		setup()
-		
-        // Do any additional setup after loading the view.
     }
 	
 	func setup() {
 		disableButtons()
 		
+//		Get selected medicine reminder information
 		let currentMedicine = sharedMedicineCollection?.currentMedicine()
 		labelMedicineName.text = currentMedicine?.getName()
 		labelFrequency.text = currentMedicine?.getFrequency()
 		
+//		Getting start and end dates
 		let formatter = DateFormatter()
 		formatter.dateFormat = "MMM d, yyyy"
-		
 		labelStart.text = formatter.string(from: (currentMedicine?.getStartDate())!)
 		labelEnd.text = formatter.string(from: (currentMedicine?.getEndDate())!)
 		
+//		Setting day button states
 		buttonSunday.draw(toggled: (currentMedicine?.getdays()[0])!)
 		buttonMonday.draw(toggled: (currentMedicine?.getdays()[1])!)
 		buttonTuesday.draw(toggled: (currentMedicine?.getdays()[2])!)
@@ -55,17 +56,6 @@ class InfoViewController: UIViewController {
 		buttonFriday.draw(toggled: (currentMedicine?.getdays()[5])!)
 		buttonSaturday.draw(toggled: (currentMedicine?.getdays()[6])!)
 	}
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 	
 //	Disabling button interaction
 	func disableButtons() {
@@ -79,15 +69,9 @@ class InfoViewController: UIViewController {
 	}
 	
 	@IBAction func unwindToViewController(segue: UIStoryboardSegue) {
-//		if let editViewController = segue.source as? EditViewController {
-			
-//			let medicine = editViewController.getMedicine()
-//			sharedMedicineCollection?.addMedicine(medicineObj: medicine)
-
-//		}
 		if segue.source is EditViewController {
-			print("banmanaaefww")
+			os_log("Coming from EditViewController")
 		}
-		print("banmanaaefww222")
+		os_log("to InfoViewController")
 	}
 }

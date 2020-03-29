@@ -53,15 +53,24 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		buttonSaturday.toggle()
 	}
 	
+	@IBAction func pickerEndPressed(_ sender: Any) {
+		let dateStart = pickerStart.date
+		var dateEnd = pickerEnd.date
+		
+		if (dateEnd < dateStart) {
+			dateEnd = dateStart
+			
+			let alert = UIAlertController(title: "Invalid date(s)", message: "End date needs to be after start date.", preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+			self.present(alert, animated: true)
+		}
+		
+		updateSaveButtonState()
+	}
+	
 	@IBAction func cancelPressed(_ sender: Any) {
 		navigationController?.popViewController(animated: true)
 		dismiss(animated: true, completion: nil)
-	}
-	
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		textMedicineName.delegate = self
-		updateSaveButtonState()
 	}
 	
 	@IBAction func returnPressed(_ sender: Any) {
@@ -72,10 +81,6 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	@IBAction func screenTapped(_ sender: Any) {
 		textMedicineName.resignFirstResponder()
 		textFrequency.resignFirstResponder()
-	}
-	
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
 	}
 	
 	func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -93,7 +98,18 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	
 	private func updateSaveButtonState() {
 		let text = textMedicineName.text ?? ""
-		buttonSave.isEnabled = !text.isEmpty
+				
+		buttonSave.isEnabled = !text.isEmpty && pickerStart.date < pickerEnd.date
+	}
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		textMedicineName.delegate = self
+		updateSaveButtonState()
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -106,18 +122,6 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	}
 	
 	func addMedicine() -> Medicine {
-		
-//		let dateStart = pickerStart.date
-//		var dateEnd = pickerEnd.date
-//		
-//		if (dateEnd < dateStart) {
-//			dateEnd = dateStart
-//			
-//			let alert = UIAlertController(title: "Invalid date(s)", message: "End date needs to be after start date.", preferredStyle: .alert)
-//			alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
-//			self.present(alert, animated: true)
-//		}
-//
 		let days = [buttonSunday.getBool(), buttonMonday.getBool(), buttonTuesday.getBool(), buttonWednesday.getBool(), buttonThursday.getBool(), buttonFriday.getBool(), buttonSaturday.getBool()]
 		return Medicine(medicineName: textMedicineName.text!, days: days, frequency: textFrequency.text!, startDate: pickerStart.date, endDate: pickerEnd.date, dismissed: false)!
 	}

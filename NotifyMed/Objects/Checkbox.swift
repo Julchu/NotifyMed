@@ -22,6 +22,7 @@ class Checkbox: UIButton {
 	}
 	
 	func draw(toggled: Bool) {
+		self.toggled = toggled
 //		Making button a blue circle w/ white text (circle: 2, rounded: 4)
 		let titleColor = toggled ? UIColor.white : .systemBlue
 		let backgroundColor = toggled ? UIColor.systemBlue : .clear

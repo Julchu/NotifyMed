@@ -62,8 +62,8 @@ class EditViewController: UIViewController, UITextFieldDelegate {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		textMedicineName.delegate = self
-		updateSaveButtonState()
 		setup()
+		updateSaveButtonState()
 	}
 	
 	func setup() {
@@ -121,6 +121,7 @@ class EditViewController: UIViewController, UITextFieldDelegate {
 			return
 		}
 		editMedicine()
+		os_log("Coming from EditViewController")
 	}
 	
 	func editMedicine() {
