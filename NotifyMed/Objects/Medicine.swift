@@ -59,11 +59,7 @@ class Medicine: NSObject, NSCoding {
 		self.days = days
 		self.dismissed = dismissed
 	}
-	
-	func changeName(medicineName: String) {
-		self.medicineName = medicineName
-	}
-	
+
 	func getName() -> String {
 		return self.medicineName
 	}
@@ -86,5 +82,29 @@ class Medicine: NSObject, NSCoding {
 	
 	func isDismissed() -> Bool {
 		return self.dismissed
+	}
+	
+	func setName(medicineName: String) {
+		self.medicineName = medicineName
+	}
+	
+	func setdays(days: [Bool]) {
+		self.days = days
+	}
+	
+	func setFrequency(frequency: String) {
+		self.frequency = frequency
+	}
+	
+	func setStartDate(startDate: Date) {
+		self.startDate = startDate
+	}
+	
+	func setEndDate(endDate: Date) {
+		self.endDate = endDate
+	}
+	
+	func setDismissed(dismissed: Bool) {
+		self.dismissed = dismissed
 	}
 }

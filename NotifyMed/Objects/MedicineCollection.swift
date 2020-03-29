@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 
 class MedicineCollection: NSObject, NSCoding {
-	var collection = [Medicine]()
+	var upcomingCollection = [Medicine]()
+//	var deletedCollection = [Medicine]()
 	var current: Int = 0
 	
 	let collectionKey = "collectionKey"
@@ -23,12 +24,12 @@ class MedicineCollection: NSObject, NSCoding {
 	
 	required convenience init?(coder decoder: NSCoder) {
 		self.init()
-		collection = (decoder.decodeObject(forKey: collectionKey) as? [Medicine])!
+		upcomingCollection = (decoder.decodeObject(forKey: collectionKey) as? [Medicine])!
 		current = (decoder.decodeInteger(forKey: currentKey))
 	}
 	
 	func encode(with coder: NSCoder) {
-		coder.encode(collection, forKey: collectionKey)
+		coder.encode(upcomingCollection, forKey: collectionKey)
 		coder.encode(current, forKey: currentKey)
 	}
 	
@@ -36,33 +37,23 @@ class MedicineCollection: NSObject, NSCoding {
 		return self.current
 	}
 	
-	func getCount()->Int {
-		return collection.count
+	func getUpcomingCount()->Int {
+		return upcomingCollection.count
 	}
 	
 	func currentMedicine() -> Medicine {
-		return collection[self.current]
+		return upcomingCollection[self.current]
 	}
 	
 	func incrementCurrent() {
 		self.current += 1
-		if (self.current == self.collection.count){
+		if (self.current == self.upcomingCollection.count){
 			self.current = 0
 		}
 	}
 	
 	func addMedicine(medicineObj: Medicine){
-		collection.append(medicineObj)
-	}
-	
-	func removeCurrentMedicine() {
-		if (self.current == self.collection.count - 1){
-			collection.remove(at: current)
-			self.current = 0
-		}
-		else{
-			collection.remove(at: current)
-		}
+		upcomingCollection.append(medicineObj)
 	}
 	
 	func setCurrentIndex(index: Int) {
@@ -70,18 +61,23 @@ class MedicineCollection: NSObject, NSCoding {
 	}
 	
 	func deleteMedicineAt(index: Int) {
-		collection.remove(at: index)
+//		deletedCollection.remove(at: index)
+	}
+	
+	func removeMedicineAt(index: Int) {
+		upcomingCollection.remove(at: index)
+//		deletedCollection.append(upcomingCollection.remove(at: index))
 	}
 	
 	func getMedicineAt(index: Int) -> Medicine {
-		return self.collection[index]
+		return self.upcomingCollection[index]
 	}
 	
 	func setup() {
-		self.collection.append(Medicine(medicineName: "Test Medicine 1", days: [true, false, true, false, true, false, true], frequency: "1", startDate: Date(), endDate: Date(), dismissed: false)!)
-		self.collection.append(Medicine(medicineName: "Test Medicine 2", days: [false, false, false, false, false, false, false], frequency: "2", startDate: Date(), endDate: Date(), dismissed: false)!)
-		self.collection.append(Medicine(medicineName: "Test Medicine 3", days: [true, true, true, true, true, true, true], frequency: "3", startDate: Date(), endDate: Date(), dismissed: false)!)
-		self.collection.append(Medicine(medicineName: "Test Medicine 4", days: [false, true, false, true, false, true, false], frequency: "4", startDate: Date(), endDate: Date(), dismissed: false)!)
+		self.upcomingCollection.append(Medicine(medicineName: "Test Medicine 1", days: [true, false, true, false, true, false, true], frequency: "1", startDate: Date(), endDate: Date(), dismissed: false)!)
+		self.upcomingCollection.append(Medicine(medicineName: "Test Medicine 2", days: [false, false, false, false, false, false, false], frequency: "2", startDate: Date(), endDate: Date(), dismissed: false)!)
+		self.upcomingCollection.append(Medicine(medicineName: "Test Medicine 3", days: [true, true, true, true, true, true, true], frequency: "3", startDate: Date(), endDate: Date(), dismissed: false)!)
+		self.upcomingCollection.append(Medicine(medicineName: "Test Medicine 4", days: [false, true, false, true, false, true, false], frequency: "4", startDate: Date(), endDate: Date(), dismissed: false)!)
 	}
 }
 

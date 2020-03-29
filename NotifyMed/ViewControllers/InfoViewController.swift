@@ -10,7 +10,7 @@ import UIKit
 
 class InfoViewController: UIViewController {
 	
-	@IBOutlet weak var buttonSave: UIBarButtonItem!
+	@IBOutlet weak var buttonEdit: UIBarButtonItem!
 	@IBOutlet weak var labelMedicineName: UILabel!
 	@IBOutlet weak var buttonSunday: Checkbox!
 	@IBOutlet weak var buttonMonday: Checkbox!
@@ -78,12 +78,16 @@ class InfoViewController: UIViewController {
 		buttonSaturday.isUserInteractionEnabled = false
 	}
 	
-	@IBAction func unwindToInfoViewController(segue: UIStoryboardSegue) {
+	@IBAction func unwindToViewController(segue: UIStoryboardSegue) {
 //		if let editViewController = segue.source as? EditViewController {
 			
 //			let medicine = editViewController.getMedicine()
 //			sharedMedicineCollection?.addMedicine(medicineObj: medicine)
 
 //		}
+		if segue.source is EditViewController {
+			print("banmanaaefww")
+		}
+		print("banmanaaefww222")
 	}
 }

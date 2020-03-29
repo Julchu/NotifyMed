@@ -30,6 +30,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// Use this method to release any resources that were specific to the discarded scenes, as they will not return.
 	}
 	
+	// MARK- Orientation
+	var enableAllOrientation = false
+	
+	func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+		if (enableAllOrientation == true) {
+			return UIInterfaceOrientationMask.portrait
+		}
+		return UIInterfaceOrientationMask.portrait
+	}
+	
 	lazy var persistentContainer: NSPersistentContainer = {
 		/*
 		The persistent container for the application. This implementation

@@ -54,11 +54,8 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	}
 	
 	@IBAction func cancelPressed(_ sender: Any) {
+		navigationController?.popViewController(animated: true)
 		dismiss(animated: true, completion: nil)
-	}
-	
-	@IBAction func buttonSavePressed(_ sender: Any) {
-		
 	}
 	
 	override func viewDidLoad() {
@@ -101,14 +98,26 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		guard let button = sender as? UIBarButtonItem, button === buttonSave else {
-			os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
+			os_log("The save button was not pressed, cancelling from Add View", log: OSLog.default, type: .debug)
 			return
 		}
-		let days = [buttonSunday.getBool(), buttonMonday.getBool(), buttonTuesday.getBool(), buttonWednesday.getBool(), buttonThursday.getBool(), buttonFriday.getBool(), buttonSaturday.getBool()]
-		medicine = Medicine(medicineName: textMedicineName.text!, days: days, frequency: textFrequency.text!, startDate: pickerStart.date, endDate: pickerEnd.date, dismissed: false)!
+		os_log("Save button pressed in Add View Controller", log: OSLog.default, type: .debug)
+		sharedMedicineCollection?.addMedicine(medicineObj: addMedicine())
 	}
 	
-	func getMedicine() -> Medicine {
+	func addMedicine() -> Medicine {
+		
+//		let dateStart = pickerStart.date
+//		var dateEnd = pickerEnd.date
+//		
+//		if (dateEnd < dateStart) {
+//			dateEnd = dateStart
+//			
+//			let alert = UIAlertController(title: "Invalid date(s)", message: "End date needs to be after start date.", preferredStyle: .alert)
+//			alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+//			self.present(alert, animated: true)
+//		}
+//
 		let days = [buttonSunday.getBool(), buttonMonday.getBool(), buttonTuesday.getBool(), buttonWednesday.getBool(), buttonThursday.getBool(), buttonFriday.getBool(), buttonSaturday.getBool()]
 		return Medicine(medicineName: textMedicineName.text!, days: days, frequency: textFrequency.text!, startDate: pickerStart.date, endDate: pickerEnd.date, dismissed: false)!
 	}

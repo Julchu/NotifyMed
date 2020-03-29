@@ -21,7 +21,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UpcomingIdentifier" id="tqS-oy-Q78" customClass="MedicineInfoCell" customModule="NotifyMed" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UpcomingIdentifier" id="tqS-oy-Q78" customClass="UpcomingInfoCell" customModule="NotifyMed" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tqS-oy-Q78" id="gwh-4d-f1q">
@@ -38,7 +38,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="medicineName" destination="cBd-Wp-LdT" id="g1j-UU-RMZ"/>
+                                            <outlet property="cellLabelUpcoming" destination="cBd-Wp-LdT" id="B6K-Zw-cdd"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -73,11 +73,6 @@
                         <viewLayoutGuide key="safeArea" id="s0D-ND-cv6"/>
                     </view>
                     <navigationItem key="navigationItem" title="Upcoming Reminders" id="wJD-w3-d3S">
-                        <barButtonItem key="leftBarButtonItem" title="All" id="CPf-dO-SIk">
-                            <connections>
-                                <segue destination="QBM-F7-cuX" kind="show" identifier="allViewSegue" id="zhO-jN-0EG"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add" id="NP3-6I-NRX">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="show" identifier="addViewSegue" id="IsO-Za-qGm"/>
@@ -86,7 +81,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="upcomingTableView" destination="dOJ-QU-h3e" id="o1x-CW-2yM"/>
-                        <segue destination="HkZ-7y-Ji8" kind="show" identifier="infoViewSegue" id="0ir-cK-uRB"/>
+                        <segue destination="HkZ-7y-Ji8" kind="show" identifier="infoViewSegueFromUpcoming" id="0ir-cK-uRB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NaL-ty-cSW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -169,6 +164,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="returnPressed:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="rwl-8z-HUX"/>
+                                    <action selector="screenTapped:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="ekJ-Zf-vZ8"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Starting Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIL-mE-Yye">
                                 <rect key="frame" x="154" y="334" width="106" height="21"/>
@@ -224,13 +223,11 @@
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="Pdj-eL-T3N">
                             <connections>
                                 <action selector="cancelPressed:" destination="BYZ-38-t0r" id="VrH-35-sde"/>
-                                <segue destination="FCG-xG-dVs" kind="unwind" unwindAction="unwindToUpcomingViewControllerWithSegue:" id="mP3-tn-ECr"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="Msf-jY-srM">
                             <connections>
-                                <action selector="buttonSavePressed:" destination="BYZ-38-t0r" id="FcA-Ph-inh"/>
-                                <segue destination="FCG-xG-dVs" kind="unwind" unwindAction="unwindToUpcomingViewControllerWithSegue:" id="8aq-LP-UU4"/>
+                                <segue destination="FCG-xG-dVs" kind="unwind" unwindAction="unwindToViewControllerWithSegue:" id="oib-IR-h1g"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -274,15 +271,18 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="8gr-1h-Qbn" id="D2t-k9-P6E"/>
-                            <outlet property="delegate" destination="8gr-1h-Qbn" id="EEc-pA-5C9"/>
+                            <outlet property="dataSource" destination="8gr-1h-Qbn" id="JI2-Td-QJd"/>
+                            <outlet property="delegate" destination="8gr-1h-Qbn" id="tED-rb-9sY"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="TtT-ao-LvG"/>
+                    <connections>
+                        <outlet property="deletedTableView" destination="qsu-Gv-0VY" id="mak-55-UAU"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AQC-sc-CDj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1107" y="1142"/>
+            <point key="canvasLocation" x="-2049" y="1190"/>
         </scene>
         <!--All Reminders-->
         <scene sceneID="wYU-fR-swK">
@@ -292,15 +292,67 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pue-Zq-AFh" customClass="AllRemindersView" customModule="NotifyMed" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pue-Zq-AFh">
                                 <rect key="frame" x="0.0" y="88" width="414" height="380"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AllIdentifier" id="Gko-Mm-PDE" customClass="AllInfoCell" customModule="NotifyMed" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gko-Mm-PDE" id="izY-Fa-HIX">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Take Medicine Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jHO-nB-5Nd">
+                                                    <rect key="frame" x="20" y="0.0" width="386" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cellLabelAll" destination="jHO-nB-5Nd" id="Kk5-Zm-J9f"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="QBM-F7-cuX" id="laA-5G-Wml"/>
+                                    <outlet property="delegate" destination="QBM-F7-cuX" id="x1O-zP-sFA"/>
+                                </connections>
                             </tableView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qVC-rk-rEx" customClass="DismissedView" customModule="NotifyMed" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qVC-rk-rEx">
                                 <rect key="frame" x="0.0" y="466" width="414" height="396"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DismissIdentifier" id="6Ih-TS-JDI" customClass="DismissedInfoCell" customModule="NotifyMed" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6Ih-TS-JDI" id="NaR-HI-odH">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Take Medicine Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BNZ-QO-98S">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cellLabelDismissed" destination="BNZ-QO-98S" id="2NI-Fz-nrd"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="QBM-F7-cuX" id="M4T-KD-ZM5"/>
+                                    <outlet property="delegate" destination="QBM-F7-cuX" id="aEh-VS-sUb"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -309,20 +361,20 @@
                     <navigationItem key="navigationItem" id="mJ8-UY-5tb">
                         <barButtonItem key="leftBarButtonItem" title="Upcoming" id="l0e-fY-5Ga">
                             <connections>
-                                <segue destination="t3k-P7-jMj" kind="unwind" unwindAction="unwindToUpcomingViewControllerWithSegue:" id="mXb-Hd-Skl"/>
+                                <segue destination="t3k-P7-jMj" kind="unwind" unwindAction="unwindToViewControllerWithSegue:" id="gVT-Hl-wOg"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Deleted" id="wgz-Ti-hsx">
-                            <connections>
-                                <segue destination="8gr-1h-Qbn" kind="show" identifier="dismissedViewSegue" id="Ra6-ev-OZv"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Deleted" id="wgz-Ti-hsx"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="allTableView" destination="pue-Zq-AFh" id="sWE-dU-4lw"/>
+                        <outlet property="dismissedTableView" destination="qVC-rk-rEx" id="FGl-nu-Yhn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LPf-bR-fbA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="t3k-P7-jMj" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-1107" y="448"/>
+            <point key="canvasLocation" x="-2049" y="448"/>
         </scene>
         <!--Edit Reminders-->
         <scene sceneID="Fn8-DB-DHB">
@@ -343,57 +395,36 @@
                                 <rect key="frame" x="78" y="186" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="S"/>
-                                <connections>
-                                    <action selector="buttonSundayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h2D-xO-k4R"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n9C-ff-ull" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
                                 <rect key="frame" x="116" y="186" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="M"/>
-                                <connections>
-                                    <action selector="buttonMondayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2hE-a5-f7U"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ga-pM-Vt9" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
                                 <rect key="frame" x="154" y="186" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="T"/>
-                                <connections>
-                                    <action selector="buttonTuesdayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aZO-sw-SSh"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dBS-ho-hOK" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
                                 <rect key="frame" x="192" y="186" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="W"/>
-                                <connections>
-                                    <action selector="buttonWednesdayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oE0-fs-CUU"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qbC-Ta-RGm" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
                                 <rect key="frame" x="230" y="186" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="T"/>
-                                <connections>
-                                    <action selector="buttonThusdayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zbE-dL-Rd7"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0xC-dT-sBA" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
                                 <rect key="frame" x="268" y="186" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="F"/>
-                                <connections>
-                                    <action selector="buttonFridayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tEU-zV-P8F"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SAj-NM-cup" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
                                 <rect key="frame" x="306" y="186" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="S"/>
-                                <connections>
-                                    <action selector="buttonSaturdayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IQr-8B-qxZ"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Every" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AKw-OI-Znx">
                                 <rect key="frame" x="140" y="255" width="43" height="21"/>
@@ -447,13 +478,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="film" catalog="system"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reminder Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JIO-ho-DMS">
-                                <rect key="frame" x="173" y="123" width="201" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dismiss Reminder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xYc-JB-gnI">
                                 <rect key="frame" x="139" y="514" width="137" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -462,7 +486,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0C7-bp-lt0">
-                                <rect key="frame" x="200" y="255" width="15" height="21"/>
+                                <rect key="frame" x="192" y="255" width="30" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reminder Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JIO-ho-DMS">
+                                <rect key="frame" x="173" y="123" width="201" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -480,10 +511,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="buttonEdit" destination="huK-gg-jpg" id="XdG-KG-Bjc"/>
                         <outlet property="buttonFriday" destination="0xC-dT-sBA" id="Uui-a1-rQO"/>
                         <outlet property="buttonMonday" destination="n9C-ff-ull" id="PZM-ZL-bar"/>
                         <outlet property="buttonSaturday" destination="SAj-NM-cup" id="4Ft-Xb-0sd"/>
-                        <outlet property="buttonSave" destination="Sd0-rB-zY1" id="FZG-lc-n8D"/>
                         <outlet property="buttonSunday" destination="7f1-2X-fka" id="sdY-XF-QxI"/>
                         <outlet property="buttonThursday" destination="qbC-Ta-RGm" id="go6-OQ-cSH"/>
                         <outlet property="buttonTuesday" destination="6ga-pM-Vt9" id="sDj-GQ-O0P"/>
@@ -501,7 +532,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="geY-Nw-LkY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="dlx-5P-QMa" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-178.2608695652174" y="447.99107142857139"/>
+            <point key="canvasLocation" x="-1107" y="448"/>
         </scene>
         <!--Edit-->
         <scene sceneID="VHH-L5-sob">
@@ -516,6 +547,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="returnPressed:" destination="j8C-c8-ryh" eventType="editingDidEnd" id="ZRB-Tj-kpa"/>
+                                    <action selector="screenTapped:" destination="j8C-c8-ryh" eventType="editingDidEnd" id="fNL-VB-aFC"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Medicine Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZE-5M-X2Y">
                                 <rect key="frame" x="41" y="130" width="124" height="21"/>
@@ -529,7 +564,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="S"/>
                                 <connections>
-                                    <action selector="buttonSundayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MCb-we-kxj"/>
+                                    <action selector="buttonSundayPressed:" destination="j8C-c8-ryh" eventType="touchUpInside" id="H2Q-5e-JfX"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F9C-YO-Jmh" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
@@ -537,7 +572,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="M"/>
                                 <connections>
-                                    <action selector="buttonMondayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ux4-k3-nJm"/>
+                                    <action selector="buttonMondayPressed:" destination="j8C-c8-ryh" eventType="touchUpInside" id="3LF-v6-gaA"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q8M-Zt-Gjl" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
@@ -545,7 +580,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="T"/>
                                 <connections>
-                                    <action selector="buttonTuesdayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fCa-L1-PBs"/>
+                                    <action selector="buttonTuesdayPressed:" destination="j8C-c8-ryh" eventType="touchUpInside" id="Aln-ec-Ic6"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jR2-5e-s7t" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
@@ -553,7 +588,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="W"/>
                                 <connections>
-                                    <action selector="buttonWednesdayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qy9-MW-yDL"/>
+                                    <action selector="buttonWednesdayPressed:" destination="j8C-c8-ryh" eventType="touchUpInside" id="O0j-Uv-9mO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yjn-gv-ebI" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
@@ -561,7 +596,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="T"/>
                                 <connections>
-                                    <action selector="buttonThusdayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YGH-Rt-prR"/>
+                                    <action selector="buttonThusdayPressed:" destination="j8C-c8-ryh" eventType="touchUpInside" id="FlP-V4-nwt"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hP5-nh-6wW" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
@@ -569,7 +604,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="F"/>
                                 <connections>
-                                    <action selector="buttonFridayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S6P-Gh-FA2"/>
+                                    <action selector="buttonFridayPressed:" destination="j8C-c8-ryh" eventType="touchUpInside" id="ppg-I5-S5f"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rae-7y-Yao" customClass="Checkbox" customModule="NotifyMed" customModuleProvider="target">
@@ -577,7 +612,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="S"/>
                                 <connections>
-                                    <action selector="buttonSaturdayPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bf7-Dx-5iM"/>
+                                    <action selector="buttonSaturdayPressed:" destination="j8C-c8-ryh" eventType="touchUpInside" id="aDX-TN-NWN"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Every" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rn4-WK-x3f">
@@ -592,6 +627,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="returnPressed:" destination="j8C-c8-ryh" eventType="editingDidEnd" id="lBI-kG-cNl"/>
+                                    <action selector="screenTapped:" destination="j8C-c8-ryh" eventType="editingDidEnd" id="Chf-ZI-7qO"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Starting Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MEZ-8t-RFo">
                                 <rect key="frame" x="154" y="334" width="106" height="21"/>
@@ -627,18 +666,37 @@
                         <viewLayoutGuide key="safeArea" id="Cwu-Sk-m33"/>
                     </view>
                     <navigationItem key="navigationItem" title="Edit" id="XeY-gX-a4L">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="VtR-8u-aNT" userLabel="efefef">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="VtR-8u-aNT">
                             <connections>
-                                <segue destination="2qU-QU-uI2" kind="unwind" unwindAction="unwindToInfoViewControllerWithSegue:" id="KNR-me-Yvt"/>
+                                <segue destination="2qU-QU-uI2" kind="unwind" unwindAction="unwindToViewControllerWithSegue:" id="VM3-Pu-4gA"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="aZA-DC-vbE"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="aZA-DC-vbE">
+                            <connections>
+                                <segue destination="2qU-QU-uI2" kind="unwind" unwindAction="unwindToViewControllerWithSegue:" id="PNf-y5-6BC"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="buttonCancel" destination="VtR-8u-aNT" id="0ba-hI-ht4"/>
+                        <outlet property="buttonFriday" destination="hP5-nh-6wW" id="XTd-8m-k4s"/>
+                        <outlet property="buttonMonday" destination="F9C-YO-Jmh" id="pDv-xk-DAU"/>
+                        <outlet property="buttonSaturday" destination="rae-7y-Yao" id="v2X-ky-pZC"/>
+                        <outlet property="buttonSave" destination="aZA-DC-vbE" id="p1K-L7-K3F"/>
+                        <outlet property="buttonSunday" destination="D9k-qa-1ft" id="0He-bg-mf0"/>
+                        <outlet property="buttonThursday" destination="yjn-gv-ebI" id="AtU-ge-2Rg"/>
+                        <outlet property="buttonTuesday" destination="q8M-Zt-Gjl" id="enf-Cv-szi"/>
+                        <outlet property="buttonWednesday" destination="jR2-5e-s7t" id="HVz-9Q-v2z"/>
+                        <outlet property="pickerEnd" destination="uxS-6w-2xq" id="s1o-v2-Bpp"/>
+                        <outlet property="pickerStart" destination="6E3-28-QvM" id="ThP-Ew-qYi"/>
+                        <outlet property="textFrequency" destination="sA7-kw-Oxp" id="Rjd-JV-ze3"/>
+                        <outlet property="textMedicineName" destination="L9M-OS-1eX" id="dEU-dU-4A9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MZ6-aJ-uzc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="2qU-QU-uI2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="748" y="448"/>
+            <point key="canvasLocation" x="-178" y="448"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bc0-Qd-whQ">

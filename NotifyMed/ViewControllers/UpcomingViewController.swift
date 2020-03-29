@@ -8,11 +8,11 @@
 
 import UIKit
 
-let customCellIdentifier = "UpcomingIdentifier"
+let upcomingCellIdentifier = "UpcomingIdentifier"
 var sharedMedicineCollection: MedicineCollection?
 
-class MedicineInfoCell: UITableViewCell {
-	@IBOutlet weak var medicineName: UILabel!
+class UpcomingInfoCell: UITableViewCell {
+	@IBOutlet weak var cellLabelUpcoming: UILabel!
 }
 
 class UpcomingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -30,24 +30,24 @@ class UpcomingViewController: UIViewController, UITableViewDelegate, UITableView
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return (sharedMedicineCollection?.getCount())!
+		return (sharedMedicineCollection?.getUpcomingCount())!
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		var cell = tableView.dequeueReusableCell(withIdentifier: customCellIdentifier, for: indexPath) as? MedicineInfoCell
+		var cell = tableView.dequeueReusableCell(withIdentifier: upcomingCellIdentifier, for: indexPath) as? UpcomingInfoCell
 		
-		if (cell == nil){
-			cell = MedicineInfoCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: customCellIdentifier) as MedicineInfoCell
+		if (cell == nil) {
+			cell = UpcomingInfoCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: upcomingCellIdentifier) as UpcomingInfoCell
 		}
 		
-		cell?.medicineName.text = sharedMedicineCollection?.getMedicineAt( index: indexPath.row).getName()
+		cell?.cellLabelUpcoming.text = sharedMedicineCollection?.getMedicineAt( index: indexPath.row).getName()
 		return cell!
 	}
 	
 //	Swipe actions:
 	func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 		let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, tableView, completionHandler) in
-			sharedMedicineCollection?.deleteMedicineAt(index: indexPath.row)
+			sharedMedicineCollection?.removeMedicineAt(index: indexPath.row)
 			self.upcomingTableView.deleteRows(at: [indexPath], with: .fade)
 			completionHandler(true)
 		}
@@ -57,7 +57,7 @@ class UpcomingViewController: UIViewController, UITableViewDelegate, UITableView
 //	Clicking on cell
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
-		performSegue(withIdentifier: "infoViewSegue", sender: sharedMedicineCollection?.collection[indexPath.row])
+		performSegue(withIdentifier: "infoViewSegueFromUpcoming", sender: sharedMedicineCollection?.upcomingCollection[indexPath.row])
 		sharedMedicineCollection?.setCurrentIndex(index: indexPath.row)
 	}
 
@@ -71,11 +71,12 @@ class UpcomingViewController: UIViewController, UITableViewDelegate, UITableView
     }
     */
 	
-	@IBAction func unwindToUpcomingViewController(segue: UIStoryboardSegue) {
-		if let addViewController = segue.source as? AddViewController {
-			sharedMedicineCollection?.addMedicine(medicineObj: addViewController.getMedicine())
+	@IBAction func unwindToViewController(segue: UIStoryboardSegue) {
+		if segue.source is AddViewController {
+			print("from add view controller")
 			upcomingTableView.reloadData()
 		} else if segue.source is InfoViewController {
+			print("from info view controller")
 			upcomingTableView.reloadData()
 		}
 	}

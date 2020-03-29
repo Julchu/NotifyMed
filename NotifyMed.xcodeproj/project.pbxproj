@@ -21,9 +21,6 @@
 		B95C25F6242C82A0004516F1 /* DeletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C25F5242C82A0004516F1 /* DeletedViewController.swift */; };
 		B95C25F8242C82F9004516F1 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C25F7242C82F9004516F1 /* EditViewController.swift */; };
 		B95C25FE242C89FA004516F1 /* AllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C25FD242C89FA004516F1 /* AllViewController.swift */; };
-		B95C2600242C8A4F004516F1 /* AllRemindersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C25FF242C8A4F004516F1 /* AllRemindersView.swift */; };
-		B95C2602242C8A68004516F1 /* DismissedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C2601242C8A68004516F1 /* DismissedView.swift */; };
-		B95C2604242C8A8A004516F1 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C2603242C8A8A004516F1 /* CalendarView.swift */; };
 		B95C260A242C93AA004516F1 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C2609242C93AA004516F1 /* Checkbox.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,9 +41,6 @@
 		B95C25F5242C82A0004516F1 /* DeletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedViewController.swift; sourceTree = "<group>"; };
 		B95C25F7242C82F9004516F1 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		B95C25FD242C89FA004516F1 /* AllViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllViewController.swift; sourceTree = "<group>"; };
-		B95C25FF242C8A4F004516F1 /* AllRemindersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRemindersView.swift; sourceTree = "<group>"; };
-		B95C2601242C8A68004516F1 /* DismissedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissedView.swift; sourceTree = "<group>"; };
-		B95C2603242C8A8A004516F1 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		B95C2609242C93AA004516F1 /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,9 +106,6 @@
 				B91C24C0242D8B67005C2B4C /* SharingMedicineCollection.swift */,
 				B91C24BE242D7241005C2B4C /* MedicineCollection.swift */,
 				B91C24BC242D62D9005C2B4C /* Medicine.swift */,
-				B95C2603242C8A8A004516F1 /* CalendarView.swift */,
-				B95C25FF242C8A4F004516F1 /* AllRemindersView.swift */,
-				B95C2601242C8A68004516F1 /* DismissedView.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -192,8 +183,6 @@
 			files = (
 				B91C24BB242CAA50005C2B4C /* UpcomingViewController.swift in Sources */,
 				B91C24BD242D62D9005C2B4C /* Medicine.swift in Sources */,
-				B95C2604242C8A8A004516F1 /* CalendarView.swift in Sources */,
-				B95C2602242C8A68004516F1 /* DismissedView.swift in Sources */,
 				B91C24C3242DECED005C2B4C /* InfoViewController.swift in Sources */,
 				B91C24C1242D8B67005C2B4C /* SharingMedicineCollection.swift in Sources */,
 				B95C25F8242C82F9004516F1 /* EditViewController.swift in Sources */,
@@ -202,7 +191,6 @@
 				B95C25DC242C6C54004516F1 /* AddViewController.swift in Sources */,
 				B95C260A242C93AA004516F1 /* Checkbox.swift in Sources */,
 				B95C25D8242C6C54004516F1 /* AppDelegate.swift in Sources */,
-				B95C2600242C8A4F004516F1 /* AllRemindersView.swift in Sources */,
 				B95C25DA242C6C54004516F1 /* SceneDelegate.swift in Sources */,
 				B91C24BF242D7241005C2B4C /* MedicineCollection.swift in Sources */,
 			);
