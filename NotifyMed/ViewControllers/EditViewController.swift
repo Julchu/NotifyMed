@@ -121,7 +121,7 @@ class EditViewController: UIViewController, UITextFieldDelegate {
 			return
 		}
 		editMedicine()
-		os_log("Coming from EditViewController")
+		os_log("In EditViewController coming from EditViewController")
 	}
 	
 	func editMedicine() {

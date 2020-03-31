@@ -47,13 +47,27 @@ class UpcomingViewController: UIViewController, UITableViewDelegate, UITableView
 		return cell!
 	}
 	
-//	Swipe actions:
-	func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-		let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, tableView, completionHandler) in
+//	Swipe actions
+	func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+		var dismissAction = UIContextualAction.init()
+		dismissAction = UIContextualAction(style: .normal, title: "Dismiss") { (action, tableView, completionHandler) in
 			sharedMedicineCollection?.removeMedicineAt(index: indexPath.row)
 			self.upcomingTableView.deleteRows(at: [indexPath], with: .fade)
 			completionHandler(true)
 		}
+		dismissAction.backgroundColor = .systemGreen
+		return UISwipeActionsConfiguration(actions: [dismissAction])
+	}
+	
+	func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+		var deleteAction = UIContextualAction.init()
+		deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, tableView, completionHandler) in
+			sharedMedicineCollection?.removeMedicineAt(index: indexPath.row)
+			self.upcomingTableView.deleteRows(at: [indexPath], with: .fade)
+			completionHandler(true)
+		}
+		deleteAction.backgroundColor = .red
+		
 		return UISwipeActionsConfiguration(actions: [deleteAction])
 	}
 	
@@ -63,24 +77,8 @@ class UpcomingViewController: UIViewController, UITableViewDelegate, UITableView
 		performSegue(withIdentifier: "infoViewSegueFromUpcoming", sender: sharedMedicineCollection?.upcomingCollection[indexPath.row])
 		sharedMedicineCollection?.setCurrentIndex(index: indexPath.row)
 	}
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 	
-	@IBAction func unwindToViewController(segue: UIStoryboardSegue) {
-		if segue.source is AddViewController {
-			os_log("From AddViewController in UpcomingViewController")
-		} else if segue.source is InfoViewController {
-			os_log("From InfoViewController in UpcomingViewController")
-		}
-		os_log("To UpcomingViewController")
+	@IBAction func unwindToUpcomingViewController(segue: UIStoryboardSegue) {
 		upcomingTableView.reloadData()
 	}
 }

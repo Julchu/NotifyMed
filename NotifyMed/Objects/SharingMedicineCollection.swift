@@ -21,7 +21,7 @@ class SharingMedicineCollection {
 		return documentsDirectory.appendingPathComponent(fileName) as String
 	}
 	
-	func loadMedicineCollection(){
+	func loadMedicineCollection() {
 		let filePath = self.dataFilePath()
 		if (FileManager.default.fileExists(atPath: filePath)) {
 			let data = NSMutableData(contentsOfFile: filePath)!
@@ -31,7 +31,7 @@ class SharingMedicineCollection {
 				unarchiver.finishDecoding()
 			}
 		}
-	}
+}
 	
 	func saveMedicineCollection() {
 		let filePath = self.dataFilePath()

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AVFoundation
 import UIKit
 import os.log
 
@@ -17,6 +18,7 @@ class Medicine: NSObject, NSCoding {
 	private var startDate: Date
 	private var endDate: Date
 	private var dismissed: Bool
+//	private var voiceRecording: NSURL
 	
 	struct Keys {
 		static let medicineName = "medicineName"
@@ -25,6 +27,7 @@ class Medicine: NSObject, NSCoding {
 		static let startDate = "startDate"
 		static let endDate = "endDate"
 		static let dismissed = "dismissed"
+//		static let voiceRecording = "voiceRecording"
 	}
 	
 	func encode(with coder: NSCoder) {
@@ -34,6 +37,16 @@ class Medicine: NSObject, NSCoding {
 		coder.encode(startDate, forKey: Keys.startDate)
 		coder.encode(endDate, forKey: Keys.endDate)
 		coder.encode(dismissed, forKey: Keys.dismissed)
+//		coder.encode(voiceRecording, forKey: Keys.voiceRecording)
+	}
+	
+	init?(medicineName: String, days: [Bool], frequency: String, startDate: Date, endDate: Date, dismissed: Bool) {
+		self.medicineName = medicineName
+		self.frequency = frequency
+		self.startDate = startDate
+		self.endDate = endDate
+		self.days = days
+		self.dismissed = dismissed
 	}
 	
 	required convenience init?(coder decoder: NSCoder) {
@@ -47,17 +60,9 @@ class Medicine: NSObject, NSCoding {
 		let startDateDecoded = (decoder.decodeObject(forKey: Keys.startDate) as? Date)!
 		let endDateDecoded = (decoder.decodeObject(forKey: Keys.endDate) as? Date)!
 		let dismissedDecoded = decoder.decodeBool(forKey: Keys.dismissed)
+//		let voiceRecordingDecoded = (decoder.decodeObject(forKey: Keys.voiceRecording) as? NSURL)!
 		
 		self.init(medicineName: medicineNameDecoded, days: daysDecoded, frequency: frequencyDecoded , startDate: startDateDecoded , endDate: endDateDecoded, dismissed: dismissedDecoded)
-	}
-	
-	init?(medicineName: String, days: [Bool], frequency: String, startDate: Date, endDate: Date, dismissed: Bool) {
-		self.medicineName = medicineName
-		self.frequency = frequency
-		self.startDate = startDate
-		self.endDate = endDate
-		self.days = days
-		self.dismissed = dismissed
 	}
 
 	func getName() -> String {
@@ -79,6 +84,10 @@ class Medicine: NSObject, NSCoding {
 	func getEndDate() -> Date {
 		return self.endDate
 	}
+	
+//	func getVoiceRecording() -> NSURL {
+//		return self.voiceRecording
+//	}
 	
 	func isDismissed() -> Bool {
 		return self.dismissed
@@ -107,4 +116,8 @@ class Medicine: NSObject, NSCoding {
 	func setDismissed(dismissed: Bool) {
 		self.dismissed = dismissed
 	}
+	
+//	func setVoiceRecording(voiceRecording: NSURL) {
+//		self.voiceRecording = voiceRecording
+//	}
 }
