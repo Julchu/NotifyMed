@@ -104,6 +104,7 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	}
 	
 //	Lecture 7 - Tabbar Views 1:06:00 custom pickers
+//	Lecture 9 - Codable 11:49 custom codable for saving audio
 	private func updateSaveButtonState() {
 		let text = textMedicineName.text ?? ""
 				
