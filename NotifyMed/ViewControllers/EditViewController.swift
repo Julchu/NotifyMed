@@ -62,6 +62,7 @@ class EditViewController: UIViewController, UITextFieldDelegate {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		textMedicineName.delegate = self
+		textFrequency.textAlignment = .center
 		setup()
 		updateSaveButtonState()
 	}

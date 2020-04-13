@@ -73,6 +73,8 @@ class InfoViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecord
         super.viewDidLoad()
 		setup()
 		
+		labelFrequency.textAlignment = .center
+		
 		//		Audio Recording
 		let fileMgr = FileManager.default
 		let dirPaths = fileMgr.urls(for: .documentDirectory, in: .userDomainMask)

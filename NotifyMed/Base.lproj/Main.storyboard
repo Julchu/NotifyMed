@@ -160,7 +160,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xZC-MK-DV0">
-                                <rect key="frame" x="191" y="250" width="33" height="34"/>
+                                <rect key="frame" x="186" y="250" width="42" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -380,10 +380,10 @@
             </objects>
             <point key="canvasLocation" x="-2049" y="448"/>
         </scene>
-        <!--Edit Reminders-->
+        <!--Reminder Info-->
         <scene sceneID="Fn8-DB-DHB">
             <objects>
-                <viewController id="HkZ-7y-Ji8" userLabel="Edit Reminders" customClass="InfoViewController" customModule="NotifyMed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="HkZ-7y-Ji8" userLabel="Reminder Info" customClass="InfoViewController" customModule="NotifyMed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mBP-0C-uf8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -492,13 +492,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reminder Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JIO-ho-DMS">
-                                <rect key="frame" x="173" y="123" width="201" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fk9-io-LCX">
                                 <rect key="frame" x="97" y="647" width="106" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -517,6 +510,13 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Start Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GF4-p5-WPL">
                                 <rect key="frame" x="196" y="334" width="155" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reminder Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JIO-ho-DMS">
+                                <rect key="frame" x="173" y="130" width="201" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -561,12 +561,12 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="geY-Nw-LkY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="dlx-5P-QMa" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-1107" y="448"/>
+            <point key="canvasLocation" x="-1107.2463768115942" y="447.99107142857139"/>
         </scene>
-        <!--Edit-->
+        <!--Edit Reminders-->
         <scene sceneID="VHH-L5-sob">
             <objects>
-                <viewController id="j8C-c8-ryh" customClass="EditViewController" customModule="NotifyMed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="j8C-c8-ryh" userLabel="Edit Reminders" customClass="EditViewController" customModule="NotifyMed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jzP-t4-YRF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -651,16 +651,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sA7-kw-Oxp">
-                                <rect key="frame" x="191" y="250" width="33" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="returnPressed:" destination="j8C-c8-ryh" eventType="editingDidEnd" id="lBI-kG-cNl"/>
-                                    <action selector="screenTapped:" destination="j8C-c8-ryh" eventType="editingDidEnd" id="Chf-ZI-7qO"/>
-                                </connections>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Starting Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MEZ-8t-RFo">
                                 <rect key="frame" x="154" y="334" width="106" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -690,6 +680,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sA7-kw-Oxp">
+                                <rect key="frame" x="186" y="250" width="42" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="returnPressed:" destination="j8C-c8-ryh" eventType="editingDidEnd" id="lBI-kG-cNl"/>
+                                    <action selector="screenTapped:" destination="j8C-c8-ryh" eventType="editingDidEnd" id="Chf-ZI-7qO"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Cwu-Sk-m33"/>
@@ -725,7 +725,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MZ6-aJ-uzc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="2qU-QU-uI2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-178" y="448"/>
+            <point key="canvasLocation" x="-178.2608695652174" y="447.99107142857139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bc0-Qd-whQ">
