@@ -71,16 +71,20 @@ class InfoViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecord
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		setup()
+		setupNewReminder()
 		
 		labelFrequency.textAlignment = .center
 		
-		//		Audio Recording
+		setupAudio()
+    }
+	
+	func setupAudio() {
+//		Audio Recording
 		let fileMgr = FileManager.default
 		let dirPaths = fileMgr.urls(for: .documentDirectory, in: .userDomainMask)
 		let soundFileURL = dirPaths[0].appendingPathComponent("recording.caf")
 		
-		//		currentMedicine?.setVoiceRecording(voiceRecording: soundFileURL as NSURL)
+//		currentMedicine?.setVoiceRecording(voiceRecording: soundFileURL as NSURL)
 		
 		let recordSettings =
 			[AVEncoderAudioQualityKey: AVAudioQuality.min.rawValue,
@@ -102,7 +106,7 @@ class InfoViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecord
 		} catch let error as NSError {
 			print("audioSession error: \(error.localizedDescription)")
 		}
-    }
+	}
 	
 //	AVAudioRecorderDelegate functions
 	func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
@@ -122,7 +126,7 @@ class InfoViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecord
 		print("Audio Record Encode Error")
 	}
 	
-	func setup() {
+	func setupNewReminder() {
 		disableButtons()
 		
 //		Get selected medicine reminder information
@@ -158,6 +162,6 @@ class InfoViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecord
 	}
 	
 	@IBAction func unwindToInfoViewController(segue: UIStoryboardSegue) {
-		setup()
+		setupNewReminder()
 	}
 }

@@ -83,12 +83,7 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		textFrequency.resignFirstResponder()
 	}
 	
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		textMedicineName.delegate = self
-		updateSaveButtonState()
-		textFrequency.textAlignment = .center
-	}
+
 	
 	func textFieldDidBeginEditing(_ textField: UITextField) {
 		buttonSave.isEnabled = false
@@ -103,15 +98,25 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		updateSaveButtonState()
 	}
 	
-//	Lecture 7 - Tabbar Views 1:06:00 custom pickers
+//	Lecture 7 - Tabbar Views 1:03:00 custom pickers
 //	Lecture 9 - Codable 11:49 custom codable for saving audio
 	private func updateSaveButtonState() {
 		let text = textMedicineName.text ?? ""
 				
 		buttonSave.isEnabled = !text.isEmpty && pickerStart.date < pickerEnd.date
 	}
-	
-	
+
+//	MARK: - viewDidLoad
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		textMedicineName.delegate = self
+		textFrequency.textAlignment = .center
+		pickerStart.datePickerMode = .date
+		pickerEnd.datePickerMode = .date
+		updateSaveButtonState()
+	}
+
+//	MARK: - viewDidAppear
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 	}

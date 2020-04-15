@@ -59,15 +59,19 @@ class EditViewController: UIViewController, UITextFieldDelegate {
 		dismiss(animated: true, completion: nil)
 	}
 	
+//	MARK: - viewDidLoad
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		textMedicineName.delegate = self
 		textFrequency.textAlignment = .center
-		setup()
+		pickerStart.datePickerMode = .date
+		pickerEnd.datePickerMode = .date
+		loadPreviousSave()
 		updateSaveButtonState()
 	}
-	
-	func setup() {
+
+//		Load previously saved medicine reminder information
+	func loadPreviousSave() {
 		let currentMedicine = sharedMedicineCollection?.currentMedicine()
 		textMedicineName.text = currentMedicine?.getName()
 		textFrequency.text = currentMedicine?.getFrequency()
