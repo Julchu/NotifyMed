@@ -25,9 +25,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		// This occurs shortly after the scene enters the background, or when its session is discarded.
 		// Release any resources associated with this scene that can be re-created the next time the scene connects.
 		// The scene may re-connect later, as its session was not neccessarily discarded (see `application:didDiscardSceneSessions` instead).
-		_ = SharingMedicineCollection()
-		SharingMedicineCollection.sharedMedicineCollection.medicineCollection = sharedMedicineCollection
-		SharingMedicineCollection.sharedMedicineCollection.saveMedicineCollection()
+		_ = SharingReminderCollection()
+		SharingReminderCollection.sharedReminderCollection.reminderCollection = sharedReminderCollection
+		SharingReminderCollection.sharedReminderCollection.saveReminderCollection()
 	}
 
 	func sceneDidBecomeActive(_ scene: UIScene) {

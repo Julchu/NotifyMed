@@ -84,7 +84,7 @@ class InfoViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecord
 		let dirPaths = fileMgr.urls(for: .documentDirectory, in: .userDomainMask)
 		let soundFileURL = dirPaths[0].appendingPathComponent("recording.caf")
 		
-//		currentMedicine?.setVoiceRecording(voiceRecording: soundFileURL as NSURL)
+//		currentReminder?.setVoiceRecording(voiceRecording: soundFileURL as NSURL)
 		
 		let recordSettings =
 			[AVEncoderAudioQualityKey: AVAudioQuality.min.rawValue,
@@ -130,24 +130,24 @@ class InfoViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecord
 		disableButtons()
 		
 //		Get selected medicine reminder information
-		let currentMedicine = sharedMedicineCollection?.currentMedicine()
-		labelMedicineName.text = currentMedicine?.getName()
-		labelFrequency.text = currentMedicine?.getFrequency()
+		let currentReminder = sharedReminderCollection?.getCurrentReminder()
+		labelMedicineName.text = currentReminder?.getName()
+		labelFrequency.text = currentReminder?.getFrequency()
 		
 //		Getting start and end dates
 		let formatter = DateFormatter()
 		formatter.dateFormat = "MMM d, yyyy"
-		labelStart.text = formatter.string(from: (currentMedicine?.getStartDate())!)
-		labelEnd.text = formatter.string(from: (currentMedicine?.getEndDate())!)
+		labelStart.text = formatter.string(from: (currentReminder?.getStartDate())!)
+		labelEnd.text = formatter.string(from: (currentReminder?.getEndDate())!)
 		
 //		Setting day button states
-		buttonSunday.draw(toggled: (currentMedicine?.getdays()[0])!)
-		buttonMonday.draw(toggled: (currentMedicine?.getdays()[1])!)
-		buttonTuesday.draw(toggled: (currentMedicine?.getdays()[2])!)
-		buttonWednesday.draw(toggled: (currentMedicine?.getdays()[3])!)
-		buttonThursday.draw(toggled: (currentMedicine?.getdays()[4])!)
-		buttonFriday.draw(toggled: (currentMedicine?.getdays()[5])!)
-		buttonSaturday.draw(toggled: (currentMedicine?.getdays()[6])!)
+		buttonSunday.draw(toggled: (currentReminder?.getdays()[0])!)
+		buttonMonday.draw(toggled: (currentReminder?.getdays()[1])!)
+		buttonTuesday.draw(toggled: (currentReminder?.getdays()[2])!)
+		buttonWednesday.draw(toggled: (currentReminder?.getdays()[3])!)
+		buttonThursday.draw(toggled: (currentReminder?.getdays()[4])!)
+		buttonFriday.draw(toggled: (currentReminder?.getdays()[5])!)
+		buttonSaturday.draw(toggled: (currentReminder?.getdays()[6])!)
 	}
 	
 //	Disabling button interaction

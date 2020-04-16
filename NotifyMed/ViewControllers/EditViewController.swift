@@ -24,7 +24,7 @@ class EditViewController: UIViewController, UITextFieldDelegate {
 	@IBOutlet weak var pickerStart: UIDatePicker!
 	@IBOutlet weak var pickerEnd: UIDatePicker!
 	
-	var medicine: Medicine!
+	var medicine: Reminder!
 	
 	@IBAction func buttonSundayPressed(_ sender: Checkbox) {
 		buttonSunday.toggle()
@@ -72,20 +72,20 @@ class EditViewController: UIViewController, UITextFieldDelegate {
 
 //		Load previously saved medicine reminder information
 	func loadPreviousSave() {
-		let currentMedicine = sharedMedicineCollection?.currentMedicine()
-		textMedicineName.text = currentMedicine?.getName()
-		textFrequency.text = currentMedicine?.getFrequency()
+		let currentReminder = sharedReminderCollection?.getCurrentReminder()
+		textMedicineName.text = currentReminder?.getName()
+		textFrequency.text = currentReminder?.getFrequency()
 		
-		pickerStart.setDate((currentMedicine?.getStartDate())!, animated: true)
-		pickerEnd.setDate((currentMedicine?.getEndDate())!, animated: true)
+		pickerStart.setDate((currentReminder?.getStartDate())!, animated: true)
+		pickerEnd.setDate((currentReminder?.getEndDate())!, animated: true)
 		
-		buttonSunday.draw(toggled: (currentMedicine?.getdays()[0])!)
-		buttonMonday.draw(toggled: (currentMedicine?.getdays()[1])!)
-		buttonTuesday.draw(toggled: (currentMedicine?.getdays()[2])!)
-		buttonWednesday.draw(toggled: (currentMedicine?.getdays()[3])!)
-		buttonThursday.draw(toggled: (currentMedicine?.getdays()[4])!)
-		buttonFriday.draw(toggled: (currentMedicine?.getdays()[5])!)
-		buttonSaturday.draw(toggled: (currentMedicine?.getdays()[6])!)
+		buttonSunday.draw(toggled: (currentReminder?.getdays()[0])!)
+		buttonMonday.draw(toggled: (currentReminder?.getdays()[1])!)
+		buttonTuesday.draw(toggled: (currentReminder?.getdays()[2])!)
+		buttonWednesday.draw(toggled: (currentReminder?.getdays()[3])!)
+		buttonThursday.draw(toggled: (currentReminder?.getdays()[4])!)
+		buttonFriday.draw(toggled: (currentReminder?.getdays()[5])!)
+		buttonSaturday.draw(toggled: (currentReminder?.getdays()[6])!)
 	}
 	
 	@IBAction func returnPressed(_ sender: Any) {
@@ -125,17 +125,17 @@ class EditViewController: UIViewController, UITextFieldDelegate {
 			os_log("The save button was not pressed, cancelling from Edit View", log: OSLog.default, type: .debug)
 			return
 		}
-		editMedicine()
+		editReminder()
 		os_log("In EditViewController coming from EditViewController")
 	}
 	
-	func editMedicine() {
+	func editReminder() {
 		let days = [buttonSunday.getBool(), buttonMonday.getBool(), buttonTuesday.getBool(), buttonWednesday.getBool(), buttonThursday.getBool(), buttonFriday.getBool(), buttonSaturday.getBool()]
-		let currentMedicine = sharedMedicineCollection?.currentMedicine()
-		currentMedicine?.setName(medicineName: textMedicineName.text!)
-		currentMedicine?.setdays(days: days)
-		currentMedicine?.setFrequency(frequency: textFrequency.text!)
-		currentMedicine?.setStartDate(startDate: pickerStart.date)
-		currentMedicine?.setEndDate(endDate: pickerEnd.date)
+		let currentReminder = sharedReminderCollection?.getCurrentReminder()
+		currentReminder?.setName(medicineName: textMedicineName.text!)
+		currentReminder?.setdays(days: days)
+		currentReminder?.setFrequency(frequency: textFrequency.text!)
+		currentReminder?.setStartDate(startDate: pickerStart.date)
+		currentReminder?.setEndDate(endDate: pickerEnd.date)
 	}
 }

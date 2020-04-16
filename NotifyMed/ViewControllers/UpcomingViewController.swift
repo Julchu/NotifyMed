@@ -10,7 +10,7 @@ import UIKit
 import os.log
 
 let upcomingCellIdentifier = "UpcomingIdentifier"
-var sharedMedicineCollection: MedicineCollection?
+var sharedReminderCollection: ReminderCollection?
 
 class UpcomingInfoCell: UITableViewCell {
 	@IBOutlet weak var cellLabelUpcoming: UILabel!
@@ -25,15 +25,15 @@ class UpcomingViewController: UIViewController, UITableViewDelegate, UITableView
 		upcomingTableView.delegate = self
 		upcomingTableView.dataSource = self
 	
-		_ = SharingMedicineCollection()
-		SharingMedicineCollection.sharedMedicineCollection.medicineCollection = MedicineCollection()
-		SharingMedicineCollection.sharedMedicineCollection.loadMedicineCollection()
-		sharedMedicineCollection = SharingMedicineCollection.sharedMedicineCollection.medicineCollection
+		_ = SharingReminderCollection()
+		SharingReminderCollection.sharedReminderCollection.reminderCollection = ReminderCollection()
+		SharingReminderCollection.sharedReminderCollection.loadReminderCollection()
+		sharedReminderCollection = SharingReminderCollection.sharedReminderCollection.reminderCollection
 	}
 	
 //	MARK: - TableView
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return (sharedMedicineCollection?.getUpcomingCount())!
+		return (sharedReminderCollection?.getUpcomingCount())!
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -43,26 +43,30 @@ class UpcomingViewController: UIViewController, UITableViewDelegate, UITableView
 			cell = UpcomingInfoCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: upcomingCellIdentifier) as UpcomingInfoCell
 		}
 		
-		cell?.cellLabelUpcoming.text = sharedMedicineCollection?.getMedicineAt( index: indexPath.row).getName()
+		cell?.cellLabelUpcoming.text = sharedReminderCollection?.getReminderAt( index: indexPath.row).getName()
 		return cell!
 	}
 	
-//	Swipe actions
+//	MARK:- Swipe actions
+//	Swipe right to dismiss
+/*
 	func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 		var dismissAction = UIContextualAction.init()
 		dismissAction = UIContextualAction(style: .normal, title: "Dismiss") { (action, tableView, completionHandler) in
-			sharedMedicineCollection?.removeMedicineAt(index: indexPath.row)
+			sharedReminderCollection?.removeReminderAt(index: indexPath.row)
 			self.upcomingTableView.deleteRows(at: [indexPath], with: .fade)
 			completionHandler(true)
 		}
 		dismissAction.backgroundColor = .systemGreen
 		return UISwipeActionsConfiguration(actions: [dismissAction])
 	}
+*/
 	
+//Swipe left to delete
 	func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 		var deleteAction = UIContextualAction.init()
 		deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, tableView, completionHandler) in
-			sharedMedicineCollection?.removeMedicineAt(index: indexPath.row)
+			sharedReminderCollection?.removeReminderAt(index: indexPath.row)
 			self.upcomingTableView.deleteRows(at: [indexPath], with: .fade)
 			completionHandler(true)
 		}
@@ -74,8 +78,17 @@ class UpcomingViewController: UIViewController, UITableViewDelegate, UITableView
 //	Clicking on cell
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
-		performSegue(withIdentifier: "infoViewSegueFromUpcoming", sender: sharedMedicineCollection?.upcomingCollection[indexPath.row])
-		sharedMedicineCollection?.setCurrentIndex(index: indexPath.row)
+		sharedReminderCollection?.setCurrentIndex(index: indexPath.row)
+		performSegue(withIdentifier: "infoViewSegueFromUpcoming", sender: sharedReminderCollection?.upcomingCollection[indexPath.row])
+		
+	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "infoViewSegueFromUpcoming" {
+			if let infoViewController = segue.destination as? InfoViewController {
+				infoViewController.title = sharedReminderCollection?.getCurrentReminder().getName()
+			}
+		}
 	}
 	
 	@IBAction func unwindToUpcomingViewController(segue: UIStoryboardSegue) {

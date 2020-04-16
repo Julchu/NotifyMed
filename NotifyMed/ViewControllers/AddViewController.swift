@@ -23,7 +23,7 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	@IBOutlet weak var textFrequency: UITextField!
 	@IBOutlet weak var pickerStart: UIDatePicker!
 	@IBOutlet weak var pickerEnd: UIDatePicker!
-	var medicine: Medicine!
+	var medicine: Reminder!
 	
 	@IBAction func buttonSundayPressed(_ sender: Checkbox) {
 		buttonSunday.toggle()
@@ -127,12 +127,12 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 			return
 		}
 		os_log("Save button pressed in Add View Controller", log: OSLog.default, type: .debug)
-		sharedMedicineCollection?.addMedicine(medicineObj: addMedicine())
+		sharedReminderCollection?.addReminder(reminderObj: addReminder())
 	}
 	
-	func addMedicine() -> Medicine {
+	func addReminder() -> Reminder {
 		let days = [buttonSunday.getBool(), buttonMonday.getBool(), buttonTuesday.getBool(), buttonWednesday.getBool(), buttonThursday.getBool(), buttonFriday.getBool(), buttonSaturday.getBool()]
-		return Medicine(medicineName: textMedicineName.text!, days: days, frequency: textFrequency.text!, startDate: pickerStart.date, endDate: pickerEnd.date, dismissed: false)!
+		return Reminder(medicineName: textMedicineName.text!, days: days, frequency: textFrequency.text!, startDate: pickerStart.date, endDate: pickerEnd.date, dismissed: false)!
 	}
 }
 

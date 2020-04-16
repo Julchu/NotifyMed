@@ -1,5 +1,5 @@
 //
-//  SharingMedicineCollection.swift
+//  SharingReminderCollection.swift
 //  NotifyMed
 //
 //  Created by Julian on 2020-03-26.
@@ -8,12 +8,12 @@
 
 import Foundation
 
-class SharingMedicineCollection {
-	static let sharedMedicineCollection = SharingMedicineCollection()
+class SharingReminderCollection {
+	static let sharedReminderCollection = SharingReminderCollection()
 	
 	let fileName = "medicineReminders.archive"
 	private let rootKey = "rootKey"
-	var medicineCollection: MedicineCollection?
+	var reminderCollection: ReminderCollection?
 	
 	func dataFilePath() -> String {
 		let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
@@ -21,23 +21,23 @@ class SharingMedicineCollection {
 		return documentsDirectory.appendingPathComponent(fileName) as String
 	}
 	
-	func loadMedicineCollection() {
+	func loadReminderCollection() {
 		let filePath = self.dataFilePath()
 		if (FileManager.default.fileExists(atPath: filePath)) {
 			let data = NSMutableData(contentsOfFile: filePath)!
 			if (filePath != "") {
 				let unarchiver = NSKeyedUnarchiver(forReadingWith: data as Data)
-				SharingMedicineCollection.sharedMedicineCollection.medicineCollection = unarchiver.decodeObject(forKey: rootKey) as? MedicineCollection
+				SharingReminderCollection.sharedReminderCollection.reminderCollection = unarchiver.decodeObject(forKey: rootKey) as? ReminderCollection
 				unarchiver.finishDecoding()
 			}
 		}
 }
 	
-	func saveMedicineCollection() {
+	func saveReminderCollection() {
 		let filePath = self.dataFilePath()
 		let data = NSMutableData()
 		let archiver = NSKeyedArchiver(forWritingWith: data)
-		archiver.encode(SharingMedicineCollection.sharedMedicineCollection.medicineCollection, forKey: rootKey)
+		archiver.encode(SharingReminderCollection.sharedReminderCollection.reminderCollection, forKey: rootKey)
 		archiver.finishEncoding()
 		data.write(toFile: filePath, atomically: true)
 	}

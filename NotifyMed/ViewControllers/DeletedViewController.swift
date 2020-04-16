@@ -18,14 +18,14 @@ class DeletedViewController: UITableViewController {
 		deletedTableView.delegate = self
 		deletedTableView.dataSource = self
 		
-		_ = SharingMedicineCollection()
-		SharingMedicineCollection.sharedMedicineCollection.medicineCollection = MedicineCollection()
-		SharingMedicineCollection.sharedMedicineCollection.loadMedicineCollection()
-		sharedMedicineCollection = SharingMedicineCollection.sharedMedicineCollection.medicineCollection
+		_ = SharingReminderCollection()
+		SharingReminderCollection.sharedReminderCollection.reminderCollection = ReminderCollection()
+		SharingReminderCollection.sharedReminderCollection.loadReminderCollection()
+		sharedReminderCollection = SharingReminderCollection.sharedReminderCollection.reminderCollection
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return (sharedMedicineCollection?.getUpcomingCount())!
+		return (sharedReminderCollection?.getUpcomingCount())!
 	}
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -35,14 +35,14 @@ class DeletedViewController: UITableViewController {
 			cell = UpcomingInfoCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: deletedCellIdentifier) as UpcomingInfoCell
 		}
 		
-		cell?.cellLabelUpcoming.text = sharedMedicineCollection?.getMedicineAt( index: indexPath.row).getName()
+		cell?.cellLabelUpcoming.text = sharedReminderCollection?.getReminderAt( index: indexPath.row).getName()
 		return cell!
 	}
 	
 	//	Swipe actions:
 	override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 		let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, tableView, completionHandler) in
-			sharedMedicineCollection?.removeMedicineAt(index: indexPath.row)
+			sharedReminderCollection?.removeReminderAt(index: indexPath.row)
 			self.deletedTableView.deleteRows(at: [indexPath], with: .fade)
 			completionHandler(true)
 		}
@@ -52,8 +52,8 @@ class DeletedViewController: UITableViewController {
 	//	Clicking on cell
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
-		performSegue(withIdentifier: "infoViewSegueFromDismiss", sender: sharedMedicineCollection?.upcomingCollection[indexPath.row])
-		sharedMedicineCollection?.setCurrentIndex(index: indexPath.row)
+		performSegue(withIdentifier: "infoViewSegueFromDismiss", sender: sharedReminderCollection?.upcomingCollection[indexPath.row])
+		sharedReminderCollection?.setCurrentIndex(index: indexPath.row)
 	}
 	
 	/*

@@ -11,7 +11,7 @@ import AVFoundation
 import UIKit
 import os.log
 
-class Medicine: NSObject, NSCoding {
+class Reminder: NSObject, NSCoding {
 	private var medicineName: String
 	private var days: [Bool] = Array(repeating: true, count: 7)
 	private var frequency: String

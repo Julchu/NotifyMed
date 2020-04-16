@@ -34,14 +34,14 @@ class AllViewController: UIViewController, UITableViewDelegate, UITableViewDataS
 		dismissedTableView.delegate = self
 		dismissedTableView.dataSource = self
 		
-		_ = SharingMedicineCollection()
-		SharingMedicineCollection.sharedMedicineCollection.medicineCollection = MedicineCollection()
-		SharingMedicineCollection.sharedMedicineCollection.loadMedicineCollection()
-		sharedMedicineCollection = SharingMedicineCollection.sharedMedicineCollection.medicineCollection
+		_ = SharingReminderCollection()
+		SharingReminderCollection.sharedReminderCollection.reminderCollection = ReminderCollection()
+		SharingReminderCollection.sharedReminderCollection.loadReminderCollection()
+		sharedReminderCollection = SharingReminderCollection.sharedReminderCollection.reminderCollection
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return (sharedMedicineCollection?.getUpcomingCount())!
+		return (sharedReminderCollection?.getUpcomingCount())!
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -52,7 +52,7 @@ class AllViewController: UIViewController, UITableViewDelegate, UITableViewDataS
 				cell = AllInfoCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: AllCellIdentifier) as AllInfoCell
 			}
 			
-			cell?.cellLabelAll.text = sharedMedicineCollection?.getMedicineAt( index: indexPath.row).getName()
+			cell?.cellLabelAll.text = sharedReminderCollection?.getReminderAt( index: indexPath.row).getName()
 			return cell!
 		} else if tableView == dismissedTableView {
 			var cell = tableView.dequeueReusableCell(withIdentifier: DismissCellIdentifier) as? DismissedInfoCell
@@ -60,7 +60,7 @@ class AllViewController: UIViewController, UITableViewDelegate, UITableViewDataS
 				cell = DismissedInfoCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: DismissCellIdentifier) as DismissedInfoCell
 			}
 			
-			cell?.cellLabelDismissed.text = sharedMedicineCollection?.getMedicineAt( index: indexPath.row).getName()
+			cell?.cellLabelDismissed.text = sharedReminderCollection?.getReminderAt( index: indexPath.row).getName()
 		}
 		return UITableViewCell()
 	}
@@ -68,7 +68,7 @@ class AllViewController: UIViewController, UITableViewDelegate, UITableViewDataS
 	//	Swipe actions:
 	func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 		let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, tableView, completionHandler) in
-			sharedMedicineCollection?.removeMedicineAt(index: indexPath.row)
+			sharedReminderCollection?.removeReminderAt(index: indexPath.row)
 			self.allTableView.deleteRows(at: [indexPath], with: .fade)
 			completionHandler(true)
 		}
@@ -79,13 +79,13 @@ class AllViewController: UIViewController, UITableViewDelegate, UITableViewDataS
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if tableView == allTableView {
 			tableView.deselectRow(at: indexPath, animated: true)
-			performSegue(withIdentifier: "infoViewSegueFromAll", sender: sharedMedicineCollection?.upcomingCollection[indexPath.row])
-			sharedMedicineCollection?.setCurrentIndex(index: indexPath.row)
+			performSegue(withIdentifier: "infoViewSegueFromAll", sender: sharedReminderCollection?.upcomingCollection[indexPath.row])
+			sharedReminderCollection?.setCurrentIndex(index: indexPath.row)
 			print("all")
 		} else if tableView == dismissedTableView {
 			tableView.deselectRow(at: indexPath, animated: true)
-			performSegue(withIdentifier: "infoViewSegueFromDismiss", sender: sharedMedicineCollection?.upcomingCollection[indexPath.row])
-			sharedMedicineCollection?.setCurrentIndex(index: indexPath.row)
+			performSegue(withIdentifier: "infoViewSegueFromDismiss", sender: sharedReminderCollection?.upcomingCollection[indexPath.row])
+			sharedReminderCollection?.setCurrentIndex(index: indexPath.row)
 			print("dismiss")
 		}
 	}
@@ -102,7 +102,7 @@ class AllViewController: UIViewController, UITableViewDelegate, UITableViewDataS
 	
 //	@IBAction func unwindToViewController(segue: UIStoryboardSegue) {
 //		if let addViewController = segue.source as? AddViewController {
-//			sharedMedicineCollection?.addMedicine(medicineObj: addViewController.addMedicine())
+//			sharedReminmderCollection?.addReminder(reminderObj: addViewController.addReminder())
 //			allTableView.reloadData()
 //		} else if segue.source is InfoViewController {
 //			allTableView.reloadData()

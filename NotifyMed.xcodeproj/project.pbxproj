@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		B91C24BB242CAA50005C2B4C /* UpcomingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91C24BA242CAA50005C2B4C /* UpcomingViewController.swift */; };
-		B91C24BD242D62D9005C2B4C /* Medicine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91C24BC242D62D9005C2B4C /* Medicine.swift */; };
-		B91C24BF242D7241005C2B4C /* MedicineCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91C24BE242D7241005C2B4C /* MedicineCollection.swift */; };
-		B91C24C1242D8B67005C2B4C /* SharingMedicineCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91C24C0242D8B67005C2B4C /* SharingMedicineCollection.swift */; };
+		B91C24BD242D62D9005C2B4C /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91C24BC242D62D9005C2B4C /* Reminder.swift */; };
+		B91C24BF242D7241005C2B4C /* ReminderCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91C24BE242D7241005C2B4C /* ReminderCollection.swift */; };
+		B91C24C1242D8B67005C2B4C /* SharingReminderCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91C24C0242D8B67005C2B4C /* SharingReminderCollection.swift */; };
 		B91C24C3242DECED005C2B4C /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91C24C2242DECED005C2B4C /* InfoViewController.swift */; };
+		B95BA5FC2447D97400E6200C /* ReminderNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95BA5FB2447D97400E6200C /* ReminderNotification.swift */; };
 		B95C25D8242C6C54004516F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C25D7242C6C54004516F1 /* AppDelegate.swift */; };
 		B95C25DA242C6C54004516F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C25D9242C6C54004516F1 /* SceneDelegate.swift */; };
 		B95C25DC242C6C54004516F1 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C25DB242C6C54004516F1 /* AddViewController.swift */; };
@@ -26,10 +27,11 @@
 
 /* Begin PBXFileReference section */
 		B91C24BA242CAA50005C2B4C /* UpcomingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingViewController.swift; sourceTree = "<group>"; };
-		B91C24BC242D62D9005C2B4C /* Medicine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medicine.swift; sourceTree = "<group>"; };
-		B91C24BE242D7241005C2B4C /* MedicineCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineCollection.swift; sourceTree = "<group>"; };
-		B91C24C0242D8B67005C2B4C /* SharingMedicineCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingMedicineCollection.swift; sourceTree = "<group>"; };
+		B91C24BC242D62D9005C2B4C /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
+		B91C24BE242D7241005C2B4C /* ReminderCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderCollection.swift; sourceTree = "<group>"; };
+		B91C24C0242D8B67005C2B4C /* SharingReminderCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingReminderCollection.swift; sourceTree = "<group>"; };
 		B91C24C2242DECED005C2B4C /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		B95BA5FB2447D97400E6200C /* ReminderNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderNotification.swift; sourceTree = "<group>"; };
 		B95C25D4242C6C54004516F1 /* NotifyMed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotifyMed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B95C25D7242C6C54004516F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B95C25D9242C6C54004516F1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,9 +105,10 @@
 			isa = PBXGroup;
 			children = (
 				B95C2609242C93AA004516F1 /* Checkbox.swift */,
-				B91C24C0242D8B67005C2B4C /* SharingMedicineCollection.swift */,
-				B91C24BE242D7241005C2B4C /* MedicineCollection.swift */,
-				B91C24BC242D62D9005C2B4C /* Medicine.swift */,
+				B91C24C0242D8B67005C2B4C /* SharingReminderCollection.swift */,
+				B91C24BE242D7241005C2B4C /* ReminderCollection.swift */,
+				B91C24BC242D62D9005C2B4C /* Reminder.swift */,
+				B95BA5FB2447D97400E6200C /* ReminderNotification.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -182,17 +185,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				B91C24BB242CAA50005C2B4C /* UpcomingViewController.swift in Sources */,
-				B91C24BD242D62D9005C2B4C /* Medicine.swift in Sources */,
+				B91C24BD242D62D9005C2B4C /* Reminder.swift in Sources */,
 				B91C24C3242DECED005C2B4C /* InfoViewController.swift in Sources */,
-				B91C24C1242D8B67005C2B4C /* SharingMedicineCollection.swift in Sources */,
+				B91C24C1242D8B67005C2B4C /* SharingReminderCollection.swift in Sources */,
 				B95C25F8242C82F9004516F1 /* EditViewController.swift in Sources */,
 				B95C25FE242C89FA004516F1 /* AllViewController.swift in Sources */,
 				B95C25F6242C82A0004516F1 /* DeletedViewController.swift in Sources */,
 				B95C25DC242C6C54004516F1 /* AddViewController.swift in Sources */,
 				B95C260A242C93AA004516F1 /* Checkbox.swift in Sources */,
+				B95BA5FC2447D97400E6200C /* ReminderNotification.swift in Sources */,
 				B95C25D8242C6C54004516F1 /* AppDelegate.swift in Sources */,
 				B95C25DA242C6C54004516F1 /* SceneDelegate.swift in Sources */,
-				B91C24BF242D7241005C2B4C /* MedicineCollection.swift in Sources */,
+				B91C24BF242D7241005C2B4C /* ReminderCollection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
