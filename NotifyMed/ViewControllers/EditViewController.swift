@@ -24,7 +24,7 @@ class EditViewController: UIViewController, UITextFieldDelegate {
 	@IBOutlet weak var pickerStart: UIDatePicker!
 	@IBOutlet weak var pickerEnd: UIDatePicker!
 	
-	var medicine: Reminder!
+	var reminder: Reminder!
 	
 	@IBAction func buttonSundayPressed(_ sender: Checkbox) {
 		buttonSunday.toggle()
