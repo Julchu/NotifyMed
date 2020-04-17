@@ -10,10 +10,12 @@ import UIKit
 
 class ReminderNotification: UNMutableNotificationContent {
 	
+//	https://developer.apple.com/documentation/usernotifications/scheduling_a_notification_locally_from_your_app#2980231
+	
 //	init(title: title, subtitle: subtitle: subtitle, body: body)
 //	super(init)
 //
-////	let notification = UNMutableNotificationContent()
+//	let notification = UNMutableNotificationContent()
 //
 //	notification.title = "Reminder to take medicine"
 //	notification.subtitle = ""
@@ -33,6 +35,8 @@ class ReminderNotification: UNMutableNotificationContent {
 }
 
 /*
+https://stackoverflow.com/questions/50966164/set-repeat-local-notification-from-date
+
 let notification = UNMutableNotificationContent()
 notification.title = ""
 notification.subtitle = ""
