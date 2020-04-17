@@ -37,7 +37,7 @@ class ReminderCollection: NSObject, NSCoding {
 		return self.current
 	}
 	
-	func getUpcomingCount()->Int {
+	func getUpcomingCount() -> Int {
 		return upcomingCollection.count
 	}
 	
