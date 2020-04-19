@@ -24,6 +24,9 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	@IBOutlet weak var pickerStart: UIDatePicker!
 	@IBOutlet weak var pickerEnd: UIDatePicker!
 	var reminder: Reminder!
+
+	var appDelegate = UIApplication.shared.delegate as? AppDelegate
+
 	
 	@IBAction func buttonSundayPressed(_ sender: Checkbox) {
 		buttonSunday.toggle()
@@ -124,13 +127,14 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 			os_log("The save button was not pressed, cancelling from Add View", log: OSLog.default, type: .debug)
 			return
 		}
-		os_log("Save button pressed in Add View Controller", log: OSLog.default, type: .debug)
+		os_log("Save button pressed in Add View Controller, saving new Reminder", log: OSLog.default, type: .debug)
 		sharedReminderCollection?.addReminder(reminderObj: addReminder())
 	}
 	
 	func addReminder() -> Reminder {
 		let days = [buttonSunday.getBool(), buttonMonday.getBool(), buttonTuesday.getBool(), buttonWednesday.getBool(), buttonThursday.getBool(), buttonFriday.getBool(), buttonSaturday.getBool()]
-		return Reminder(medicineName: textMedicineName.text!, days: days, frequency: textFrequency.text!, startDate: pickerStart.date, endDate: pickerEnd.date, dismissed: false)!
+		let uuids = [UUID().uuidString, UUID().uuidString, UUID().uuidString, UUID().uuidString, UUID().uuidString, UUID().uuidString, UUID().uuidString]
+		return Reminder(medicineName: textMedicineName.text!, days: days, frequency: textFrequency.text!, startDate: pickerStart.date, endDate: pickerEnd.date, dismissed: false, uuids: uuids)!
 	}
 }
 

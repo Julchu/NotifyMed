@@ -231,7 +231,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="Msf-jY-srM">
                             <connections>
-                                <segue destination="FCG-xG-dVs" kind="unwind" unwindAction="unwindToViewControllerWithSegue:" id="oib-IR-h1g"/>
+                                <segue destination="FCG-xG-dVs" kind="unwind" unwindAction="unwindToUpcomingViewControllerWithSegue:" id="aeu-kq-4pT"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

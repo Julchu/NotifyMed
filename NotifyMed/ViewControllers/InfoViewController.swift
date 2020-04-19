@@ -141,13 +141,13 @@ class InfoViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecord
 		labelEnd.text = formatter.string(from: (currentReminder?.getEndDate())!)
 		
 //		Setting day button states
-		buttonSunday.draw(toggled: (currentReminder?.getdays()[0])!)
-		buttonMonday.draw(toggled: (currentReminder?.getdays()[1])!)
-		buttonTuesday.draw(toggled: (currentReminder?.getdays()[2])!)
-		buttonWednesday.draw(toggled: (currentReminder?.getdays()[3])!)
-		buttonThursday.draw(toggled: (currentReminder?.getdays()[4])!)
-		buttonFriday.draw(toggled: (currentReminder?.getdays()[5])!)
-		buttonSaturday.draw(toggled: (currentReminder?.getdays()[6])!)
+		buttonSunday.draw(toggled: (currentReminder?.getDays()[0])!)
+		buttonMonday.draw(toggled: (currentReminder?.getDays()[1])!)
+		buttonTuesday.draw(toggled: (currentReminder?.getDays()[2])!)
+		buttonWednesday.draw(toggled: (currentReminder?.getDays()[3])!)
+		buttonThursday.draw(toggled: (currentReminder?.getDays()[4])!)
+		buttonFriday.draw(toggled: (currentReminder?.getDays()[5])!)
+		buttonSaturday.draw(toggled: (currentReminder?.getDays()[6])!)
 	}
 	
 //	Disabling button interaction

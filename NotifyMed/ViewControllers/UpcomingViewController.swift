@@ -49,12 +49,14 @@ class UpcomingViewController: UIViewController, UITableViewDelegate, UITableView
 	
 //	MARK:- Swipe actions
 //	Swipe right to dismiss
+
 /*
 	func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 		var dismissAction = UIContextualAction.init()
 		dismissAction = UIContextualAction(style: .normal, title: "Dismiss") { (action, tableView, completionHandler) in
-			sharedReminderCollection?.removeReminderAt(index: indexPath.row)
-			self.upcomingTableView.deleteRows(at: [indexPath], with: .fade)
+			ReminderNotification().removeReminder(uuids: (sharedReminderCollection?.getReminderAt(index: indexPath.row).getUuids())!)
+//			sharedReminderCollection?.removeReminderAt(index: indexPath.row)
+//			self.upcomingTableView.deleteRows(at: [indexPath], with: .fade)
 			completionHandler(true)
 		}
 		dismissAction.backgroundColor = .systemGreen
@@ -66,6 +68,7 @@ class UpcomingViewController: UIViewController, UITableViewDelegate, UITableView
 	func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 		var deleteAction = UIContextualAction.init()
 		deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, tableView, completionHandler) in
+			ReminderNotification().removeReminder(uuids: (sharedReminderCollection?.getReminderAt(index: indexPath.row).getUuids())!)
 			sharedReminderCollection?.removeReminderAt(index: indexPath.row)
 			self.upcomingTableView.deleteRows(at: [indexPath], with: .fade)
 			completionHandler(true)
@@ -81,6 +84,8 @@ class UpcomingViewController: UIViewController, UITableViewDelegate, UITableView
 		sharedReminderCollection?.setCurrentIndex(index: indexPath.row)
 		performSegue(withIdentifier: "infoViewSegueFromUpcoming", sender: sharedReminderCollection?.upcomingCollection[indexPath.row])
 		
+		let uuids = sharedReminderCollection?.upcomingCollection[indexPath.row].getUuids()
+		ReminderNotification().getNotificationList(uuids: uuids!)
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

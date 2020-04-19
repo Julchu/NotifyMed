@@ -8,11 +8,27 @@
 
 import UIKit
 import CoreData
+import os.log
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+//		var window: UIWindow?
+	let notificationCenter = UNUserNotificationCenter.current()
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
+		
+
+		notificationCenter.delegate = self
+		
+		let options: UNAuthorizationOptions = [.alert, .sound, .badge]
+
+		notificationCenter.requestAuthorization(options: options) {
+			(didAllow, error) in
+			if !didAllow {
+				print("User has declined notifications")
+			}
+		}
+		
 		return true
 	}
 
@@ -84,3 +100,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate {
+
+	func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+		completionHandler([.alert, .sound])
+	}
+
+	func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+
+		if response.notification.request.identifier == "Local Notification" {
+			print("Handling notifications with the Local Notification Identifier")
+		}
+
+		completionHandler()
+	}
+}
