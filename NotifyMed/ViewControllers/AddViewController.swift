@@ -83,8 +83,6 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		textFrequency.resignFirstResponder()
 	}
 	
-
-	
 	func textFieldDidBeginEditing(_ textField: UITextField) {
 		buttonSave.isEnabled = false
 	}

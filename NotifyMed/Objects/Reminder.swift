@@ -19,6 +19,7 @@ class Reminder: NSObject, NSCoding {
 	private var endDate: Date
 	private var dismissed: Bool
 //	private var voiceRecording: NSURL
+	private var uuids = [String](repeating: "", count:7)
 	
 	struct Keys {
 		static let medicineName = "medicineName"
@@ -28,6 +29,7 @@ class Reminder: NSObject, NSCoding {
 		static let endDate = "endDate"
 		static let dismissed = "dismissed"
 //		static let voiceRecording = "voiceRecording"
+		static let uuids = "uuids"
 	}
 	
 	func encode(with coder: NSCoder) {
@@ -38,6 +40,7 @@ class Reminder: NSObject, NSCoding {
 		coder.encode(endDate, forKey: Keys.endDate)
 		coder.encode(dismissed, forKey: Keys.dismissed)
 //		coder.encode(voiceRecording, forKey: Keys.voiceRecording)
+		coder.encode(uuids, forKey: Keys.uuids)
 	}
 	
 	init?(medicineName: String, days: [Bool], frequency: String, startDate: Date, endDate: Date, dismissed: Bool) {
@@ -47,6 +50,9 @@ class Reminder: NSObject, NSCoding {
 		self.endDate = endDate
 		self.days = days
 		self.dismissed = dismissed
+		
+		let reminderNotification = ReminderNotification(days: days)
+		self.uuids = reminderNotification.getUuids()
 	}
 	
 	required convenience init?(coder decoder: NSCoder) {
