@@ -79,13 +79,13 @@ class EditViewController: UIViewController, UITextFieldDelegate {
 		pickerStart.setDate((currentReminder?.getStartDate())!, animated: true)
 		pickerEnd.setDate((currentReminder?.getEndDate())!, animated: true)
 		
-		buttonSunday.draw(toggled: (currentReminder?.getdays()[0])!)
-		buttonMonday.draw(toggled: (currentReminder?.getdays()[1])!)
-		buttonTuesday.draw(toggled: (currentReminder?.getdays()[2])!)
-		buttonWednesday.draw(toggled: (currentReminder?.getdays()[3])!)
-		buttonThursday.draw(toggled: (currentReminder?.getdays()[4])!)
-		buttonFriday.draw(toggled: (currentReminder?.getdays()[5])!)
-		buttonSaturday.draw(toggled: (currentReminder?.getdays()[6])!)
+		buttonSunday.draw(toggled: (currentReminder?.getDays()[0])!)
+		buttonMonday.draw(toggled: (currentReminder?.getDays()[1])!)
+		buttonTuesday.draw(toggled: (currentReminder?.getDays()[2])!)
+		buttonWednesday.draw(toggled: (currentReminder?.getDays()[3])!)
+		buttonThursday.draw(toggled: (currentReminder?.getDays()[4])!)
+		buttonFriday.draw(toggled: (currentReminder?.getDays()[5])!)
+		buttonSaturday.draw(toggled: (currentReminder?.getDays()[6])!)
 	}
 	
 	@IBAction func returnPressed(_ sender: Any) {
@@ -137,5 +137,8 @@ class EditViewController: UIViewController, UITextFieldDelegate {
 		currentReminder?.setFrequency(frequency: textFrequency.text!)
 		currentReminder?.setStartDate(startDate: pickerStart.date)
 		currentReminder?.setEndDate(endDate: pickerEnd.date)
+		
+		let reminderNotification = ReminderNotification()
+		reminderNotification.setReminder(days: (currentReminder?.getDays())!, uuids: (currentReminder?.getUuids())!)
 	}
 }

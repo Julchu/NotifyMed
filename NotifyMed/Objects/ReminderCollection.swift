@@ -74,10 +74,11 @@ class ReminderCollection: NSObject, NSCoding {
 	}
 	
 	func setup() {
-        self.upcomingCollection.append(Reminder(medicineName: "Test Medicine 1", days: [true, false, true, false, true, false, true], frequency: "1", startDate: Date(), endDate: Date(), dismissed: false, audioName:"audio1.m4a")!)
-		self.upcomingCollection.append(Reminder(medicineName: "Test Medicine 2", days: [false, false, false, false, false, false, false], frequency: "2", startDate: Date(), endDate: Date(), dismissed: false,audioName: "audio2.m4a")!)
-		self.upcomingCollection.append(Reminder(medicineName: "Test Medicine 3", days: [true, true, true, true, true, true, true], frequency: "3", startDate: Date(), endDate: Date(), dismissed: false,audioName: "audio3.m4a")!)
-		self.upcomingCollection.append(Reminder(medicineName: "Test Medicine 4", days: [false, true, false, true, false, true, false], frequency: "4", startDate: Date(), endDate: Date(), dismissed: false,audioName: "audio4.m4a")!)
+//     	self.upcomingCollection.append(Reminder(medicineName: "Test Medicine 1", days: [true, false, true, false, true, false, true], frequency: "1", startDate: Date(), endDate: Date(), dismissed: false, audioName:"audio1.m4a")!)
+// 		self.upcomingCollection.append(Reminder(medicineName: "Test Medicine 2", days: [false, false, false, false, false, false, false], frequency: "2", startDate: Date(), endDate: Date(), dismissed: false, audioName: "audio2.m4a")!)
+// 		self.upcomingCollection.append(Reminder(medicineName: "Test Medicine 3", days: [true, true, true, true, true, true, true], frequency: "3", startDate: Date(), endDate: Date(), dismissed: false, audioName: "audio3.m4a")!)
+// 		self.upcomingCollection.append(Reminder(medicineName: "Test Medicine 4", days: [false, true, false, true, false, true, false], frequency: "4", startDate: Date(), endDate: Date(), dismissed: false, audioName: "audio4.m4a")!)
+
 	}
 }
 

@@ -81,7 +81,7 @@ class InfoViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecord
         let path = getDirectory().appendingPathComponent("\(audioName).m4a")
 
 			do {
-				try audioPlayer = AVAudioPlayer(contentsOf:	path)
+				try audioPlayer = AVAudioPlayer(contentsOf:	path)julian
 				audioPlayer!.delegate = self
 				audioPlayer!.prepareToPlay()
 				audioPlayer!.play()
@@ -108,12 +108,9 @@ class InfoViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecord
         if let number:Int = UserDefaults.standard.object(forKey: "index") as? Int{
             numberOfRecords = number
         }
-        
 		setupNewReminder()
 		
 		labelFrequency.textAlignment = .center
-		
-		//setupAudio()
     }
     
     func getDirectory()->URL{
@@ -121,7 +118,6 @@ class InfoViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecord
         let documentDirectory=paths[0]
         return documentDirectory
     }
-    
 //	AVAudioRecorderDelegate functions
 	func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
 		buttonVoiceRecording.isEnabled = true
@@ -155,13 +151,13 @@ class InfoViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecord
 		labelEnd.text = formatter.string(from: (currentReminder?.getEndDate())!)
 		
 //		Setting day button states
-		buttonSunday.draw(toggled: (currentReminder?.getdays()[0])!)
-		buttonMonday.draw(toggled: (currentReminder?.getdays()[1])!)
-		buttonTuesday.draw(toggled: (currentReminder?.getdays()[2])!)
-		buttonWednesday.draw(toggled: (currentReminder?.getdays()[3])!)
-		buttonThursday.draw(toggled: (currentReminder?.getdays()[4])!)
-		buttonFriday.draw(toggled: (currentReminder?.getdays()[5])!)
-		buttonSaturday.draw(toggled: (currentReminder?.getdays()[6])!)
+		buttonSunday.draw(toggled: (currentReminder?.getDays()[0])!)
+		buttonMonday.draw(toggled: (currentReminder?.getDays()[1])!)
+		buttonTuesday.draw(toggled: (currentReminder?.getDays()[2])!)
+		buttonWednesday.draw(toggled: (currentReminder?.getDays()[3])!)
+		buttonThursday.draw(toggled: (currentReminder?.getDays()[4])!)
+		buttonFriday.draw(toggled: (currentReminder?.getDays()[5])!)
+		buttonSaturday.draw(toggled: (currentReminder?.getDays()[6])!)
 	}
 	
 //	Disabling button interaction
@@ -178,14 +174,4 @@ class InfoViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecord
 	@IBAction func unwindToInfoViewController(segue: UIStoryboardSegue) {
 		setupNewReminder()
 	}
-    
-//    class func getDocumentsDirectory() -> URL {
-//        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-//        let documentsDirectory = paths[0]
-//        return documentsDirectory
-//    }
-//
-//    class func getWhistleURL() -> URL {
-//        return getDocumentsDirectory().appendingPathComponent("whistle.m4a")
-//    }
 }
