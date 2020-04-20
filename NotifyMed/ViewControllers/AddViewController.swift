@@ -24,6 +24,8 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	@IBOutlet weak var pickerStart: UIDatePicker!
 	@IBOutlet weak var pickerEnd: UIDatePicker!
 	var reminder: Reminder!
+	var dateStartPlaceholder: Date!
+	var dateEndPlaceholder: Date!
 
 	var appDelegate = UIApplication.shared.delegate as? AppDelegate
 	
@@ -55,12 +57,27 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		buttonSaturday.toggle()
 	}
 	
-	@IBAction func pickerEndPressed(_ sender: Any) {
+	@IBAction func pickerStartPressed(_ sender: UIDatePicker) {
 		let dateStart = pickerStart.date
-		var dateEnd = pickerEnd.date
+		let dateEnd = pickerEnd.date
 		
 		if (dateEnd < dateStart) {
-			dateEnd = dateStart
+			pickerStart.setDate(dateStartPlaceholder, animated: true)
+			
+			let alert = UIAlertController(title: "Invalid date(s)", message: "End date needs to be after start date.", preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+			self.present(alert, animated: true)
+		}
+		
+		updateSaveButtonState()
+	}
+	
+	@IBAction func pickerEndPressed(_ sender: UIDatePicker) {
+		let dateStart = pickerStart.date
+		let dateEnd = pickerEnd.date
+		
+		if (dateEnd < dateStart) {
+			pickerEnd.setDate(dateEndPlaceholder, animated: true)
 			
 			let alert = UIAlertController(title: "Invalid date(s)", message: "End date needs to be after start date.", preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
@@ -112,6 +129,8 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		textFrequency.textAlignment = .center
 		pickerStart.datePickerMode = .date
 		pickerEnd.datePickerMode = .date
+		dateStartPlaceholder = pickerStart.date
+		dateEndPlaceholder = pickerEnd.date
 		updateSaveButtonState()
 	}
 

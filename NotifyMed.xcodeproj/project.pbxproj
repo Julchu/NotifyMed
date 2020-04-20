@@ -12,6 +12,7 @@
 		B91C24BF242D7241005C2B4C /* ReminderCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91C24BE242D7241005C2B4C /* ReminderCollection.swift */; };
 		B91C24C1242D8B67005C2B4C /* SharingReminderCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91C24C0242D8B67005C2B4C /* SharingReminderCollection.swift */; };
 		B91C24C3242DECED005C2B4C /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91C24C2242DECED005C2B4C /* InfoViewController.swift */; };
+		B9449483244D4AA9001B9DC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9449482244D4AA9001B9DC7 /* Assets.xcassets */; };
 		B95BA5FC2447D97400E6200C /* ReminderNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95BA5FB2447D97400E6200C /* ReminderNotification.swift */; };
 		B95C25D8242C6C54004516F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C25D7242C6C54004516F1 /* AppDelegate.swift */; };
 		B95C25DA242C6C54004516F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C25D9242C6C54004516F1 /* SceneDelegate.swift */; };
@@ -30,6 +31,7 @@
 		B91C24BE242D7241005C2B4C /* ReminderCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderCollection.swift; sourceTree = "<group>"; };
 		B91C24C0242D8B67005C2B4C /* SharingReminderCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingReminderCollection.swift; sourceTree = "<group>"; };
 		B91C24C2242DECED005C2B4C /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		B9449482244D4AA9001B9DC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B95BA5FB2447D97400E6200C /* ReminderNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderNotification.swift; sourceTree = "<group>"; };
 		B95C25D4242C6C54004516F1 /* NotifyMed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotifyMed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B95C25D7242C6C54004516F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				B95C25E5242C6C54004516F1 /* Info.plist */,
 				B95C25E2242C6C54004516F1 /* LaunchScreen.storyboard */,
 				B95C25DD242C6C54004516F1 /* Main.storyboard */,
+				B9449482244D4AA9001B9DC7 /* Assets.xcassets */,
 				B95C2607242C9352004516F1 /* ViewControllers */,
 				B95C2608242C9361004516F1 /* Objects */,
 			);
@@ -169,6 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B95C25E4242C6C54004516F1 /* LaunchScreen.storyboard in Resources */,
+				B9449483244D4AA9001B9DC7 /* Assets.xcassets in Resources */,
 				B95C25DF242C6C54004516F1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

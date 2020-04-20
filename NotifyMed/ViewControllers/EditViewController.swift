@@ -25,6 +25,8 @@ class EditViewController: UIViewController, UITextFieldDelegate {
 	@IBOutlet weak var pickerEnd: UIDatePicker!
 	
 	var reminder: Reminder!
+	var dateStartPlaceholder: Date!
+	var dateEndPlaceholder: Date!
 	
 	@IBAction func buttonSundayPressed(_ sender: Checkbox) {
 		buttonSunday.toggle()
@@ -54,6 +56,36 @@ class EditViewController: UIViewController, UITextFieldDelegate {
 		buttonSaturday.toggle()
 	}
 	
+	@IBAction func pickerStartPressed(_ sender: UIDatePicker) {
+		let dateStart = pickerStart.date
+		let dateEnd = pickerEnd.date
+		
+		if (dateEnd < dateStart) {
+			pickerStart.setDate(dateStartPlaceholder, animated: true)
+			
+			let alert = UIAlertController(title: "Invalid date(s)", message: "End date needs to be after start date.", preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+			self.present(alert, animated: true)
+		}
+		
+		updateSaveButtonState()
+	}
+	
+	@IBAction func pickerEndPressed(_ sender: UIDatePicker) {
+		let dateStart = pickerStart.date
+		let dateEnd = pickerEnd.date
+		
+		if (dateEnd < dateStart) {
+			pickerEnd.setDate(dateEndPlaceholder, animated: true)
+			
+			let alert = UIAlertController(title: "Invalid date(s)", message: "End date needs to be after start date.", preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+			self.present(alert, animated: true)
+		}
+		
+		updateSaveButtonState()
+	}
+	
 	@IBAction func cancelPressed(_ sender: Any) {
 		navigationController?.popViewController(animated: true)
 		dismiss(animated: true, completion: nil)
@@ -66,6 +98,8 @@ class EditViewController: UIViewController, UITextFieldDelegate {
 		textFrequency.textAlignment = .center
 		pickerStart.datePickerMode = .date
 		pickerEnd.datePickerMode = .date
+		dateStartPlaceholder = pickerStart.date
+		dateEndPlaceholder = pickerEnd.date
 		loadPreviousSave()
 		updateSaveButtonState()
 	}
