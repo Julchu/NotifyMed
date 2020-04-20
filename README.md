@@ -20,7 +20,12 @@
 - Learning and developing in a technology (iOS) that I've always been interested in learning
     
 ## Next step:
+- Calendar interface
 - Online storage system
 - Create a companion app for medical practitioners/caretakers to track their patients' reminders
 - Rebuild in React Native
 - Android alternative
+
+## Contributors:
+- Julian Chu (Github: julchu)
+- Dan Huynh (GitHub: danhuynh1)
