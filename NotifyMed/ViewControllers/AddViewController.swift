@@ -24,7 +24,6 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	@IBOutlet weak var pickerStart: UIDatePicker!
 	@IBOutlet weak var pickerEnd: UIDatePicker!
 	var reminder: Reminder!
-    var currentIndex = 0
 
 	var appDelegate = UIApplication.shared.delegate as? AppDelegate
 	
@@ -133,7 +132,8 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	func addReminder() -> Reminder {
 		let days = [buttonSunday.getBool(), buttonMonday.getBool(), buttonTuesday.getBool(), buttonWednesday.getBool(), buttonThursday.getBool(), buttonFriday.getBool(), buttonSaturday.getBool()]
 		let uuids = [UUID().uuidString, UUID().uuidString, UUID().uuidString, UUID().uuidString, UUID().uuidString, UUID().uuidString, UUID().uuidString]
-		return Reminder(medicineName: textMedicineName.text!, days: days, frequency: textFrequency.text!, startDate: pickerStart.date, endDate: pickerEnd.date, dismissed: false, audioName: "audio\(currentIndex).mp4", uuids: uuids)!
+		let audioUuid = UUID().uuidString
+		return Reminder(medicineName: textMedicineName.text!, days: days, frequency: textFrequency.text!, startDate: pickerStart.date, endDate: pickerEnd.date, dismissed: false, audioName: "\(audioUuid).mp4", uuids: uuids)!
 	}
 }
 

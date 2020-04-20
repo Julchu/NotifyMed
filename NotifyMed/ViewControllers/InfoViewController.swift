@@ -24,9 +24,6 @@ class InfoViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecord
 	@IBOutlet weak var labelStart: UILabel!
 	@IBOutlet weak var labelEnd: UILabel!
 	@IBOutlet weak var buttonVoiceRecording: UIButton!
-	@IBOutlet weak var buttonVideoRecording: UIButton!
-	
-	@IBOutlet weak var buttonVoiceRecordingStop: UIButton!
 	@IBOutlet weak var buttonVoiceRecordingPlay: UIButton!
 	
 	var audioPlayer: AVAudioPlayer!
@@ -48,26 +45,22 @@ class InfoViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecord
             let filename = getDirectory().appendingPathComponent("\(audioName).m4a")
             
             let settings = [AVFormatIDKey: Int(kAudioFormatMPEG4AAC), AVSampleRateKey: 12000, AVNumberOfChannelsKey: 1, AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue]
-            
-            do{
+            do {
                 audioRecorder = try AVAudioRecorder(url: filename, settings: settings)
                 audioRecorder.delegate = self
                 audioRecorder.record()
-//                            buttonVoiceRecordingPlay.isEnabled = false
-                            //buttonVoiceRecordingStop.isEnabled = true
-            }catch{
+				buttonVoiceRecordingPlay.isEnabled = false
+				buttonVoiceRecording.setImage(UIImage(systemName: "stop.circle"), for: .normal)
+            } catch {
                 print("Problem!")
-                
             }
-        }else{
+        } else {
             audioRecorder.stop()
             audioRecorder = nil
-            //buttonVoiceRecordingPlay.isEnabled = true
-            //buttonVoiceRecordingStop.isEnabled = false
+			buttonVoiceRecording.setImage(UIImage(systemName: "mic"), for: .normal)
+            buttonVoiceRecordingPlay.isEnabled = true
             UserDefaults.standard.set(numberOfRecords,forKey: "index")
         }
-        
-        
 	}
 	
 	@IBAction func buttonVoiceRecordingStopPressed(_ sender: Any) {
@@ -75,9 +68,6 @@ class InfoViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecord
 	}
 	
 	@IBAction func buttonVoiceRecordingPlayPressed(_ sender: Any) {
-//		if audioRecorder?.isRecording == false {
-//			buttonVoiceRecordingStop.isEnabled = true
-//			buttonVoiceRecording.isEnabled = false
         let path = getDirectory().appendingPathComponent("\(audioName).m4a")
 
 			do {
@@ -96,7 +86,6 @@ class InfoViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecord
         
         //print(currentReminder?.getAudioName())
         audioName = currentReminder?.getAudioName()
-        print(audioName!)
         recordingSession = AVAudioSession.sharedInstance()
         AVAudioSession.sharedInstance().requestRecordPermission{ (hasPermission) in
             if hasPermission{
@@ -121,7 +110,6 @@ class InfoViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecord
 //	AVAudioRecorderDelegate functions
 	func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
 		buttonVoiceRecording.isEnabled = true
-		buttonVoiceRecordingStop.isEnabled = false
 	}
 	
 	func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
