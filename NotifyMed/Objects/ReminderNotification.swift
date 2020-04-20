@@ -27,7 +27,11 @@ class ReminderNotification {
 //			Check if days[i] is true
 			if days[i] {
 				let dateComponents = DateComponents(calendar: Calendar.current, hour: 12, minute: 00, weekday: i + 1)
-				let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+//				let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+				
+//				For demo purposes:
+				let trigger = UNTimeIntervalNotificationTrigger(timeInterval: Double(i) + 2.0, repeats: false)
+				
 				let request = UNNotificationRequest(identifier: uuids[i], content: content, trigger: trigger)
 								
 				notificationCenter.add(request) { (error) in
@@ -45,6 +49,7 @@ class ReminderNotification {
 	}
 	
 	func removeReminder(uuids: [String]) {
+		os_log("Removing notifications for ids: %@", log: .default, type: .info, uuids)
 		let notificationCenter = UNUserNotificationCenter.current()
 		notificationCenter.removePendingNotificationRequests(withIdentifiers: uuids)
 	}

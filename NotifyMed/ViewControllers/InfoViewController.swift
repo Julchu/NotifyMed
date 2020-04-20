@@ -81,7 +81,7 @@ class InfoViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecord
         let path = getDirectory().appendingPathComponent("\(audioName).m4a")
 
 			do {
-				try audioPlayer = AVAudioPlayer(contentsOf:	path)julian
+				try audioPlayer = AVAudioPlayer(contentsOf:	path)
 				audioPlayer!.delegate = self
 				audioPlayer!.prepareToPlay()
 				audioPlayer!.play()
