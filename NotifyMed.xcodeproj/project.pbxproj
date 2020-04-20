@@ -17,7 +17,6 @@
 		B95C25DA242C6C54004516F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C25D9242C6C54004516F1 /* SceneDelegate.swift */; };
 		B95C25DC242C6C54004516F1 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C25DB242C6C54004516F1 /* AddViewController.swift */; };
 		B95C25DF242C6C54004516F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95C25DD242C6C54004516F1 /* Main.storyboard */; };
-		B95C25E1242C6C54004516F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B95C25E0242C6C54004516F1 /* Assets.xcassets */; };
 		B95C25E4242C6C54004516F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95C25E2242C6C54004516F1 /* LaunchScreen.storyboard */; };
 		B95C25F6242C82A0004516F1 /* DeletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C25F5242C82A0004516F1 /* DeletedViewController.swift */; };
 		B95C25F8242C82F9004516F1 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C25F7242C82F9004516F1 /* EditViewController.swift */; };
@@ -37,7 +36,6 @@
 		B95C25D9242C6C54004516F1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B95C25DB242C6C54004516F1 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		B95C25DE242C6C54004516F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B95C25E0242C6C54004516F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B95C25E3242C6C54004516F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B95C25E5242C6C54004516F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B95C25F5242C82A0004516F1 /* DeletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedViewController.swift; sourceTree = "<group>"; };
@@ -81,7 +79,6 @@
 				B95C25E5242C6C54004516F1 /* Info.plist */,
 				B95C25E2242C6C54004516F1 /* LaunchScreen.storyboard */,
 				B95C25DD242C6C54004516F1 /* Main.storyboard */,
-				B95C25E0242C6C54004516F1 /* Assets.xcassets */,
 				B95C2607242C9352004516F1 /* ViewControllers */,
 				B95C2608242C9361004516F1 /* Objects */,
 			);
@@ -172,7 +169,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B95C25E4242C6C54004516F1 /* LaunchScreen.storyboard in Resources */,
-				B95C25E1242C6C54004516F1 /* Assets.xcassets in Resources */,
 				B95C25DF242C6C54004516F1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

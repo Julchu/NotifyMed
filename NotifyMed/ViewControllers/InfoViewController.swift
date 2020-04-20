@@ -29,20 +29,13 @@ class InfoViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecord
 	var audioPlayer: AVAudioPlayer!
 	var audioRecorder: AVAudioRecorder!
     var recordingSession : AVAudioSession!
-    var numberOfRecords = 0
     var audioName : String!
 	
 //	Setting recording button toggles
 	@IBAction func buttonVoiceRecordingPressed(_ sender: Any) {
-//		if audioRecorder?.isRecording == false {
-//			buttonVoiceRecordingPlay.isEnabled = false
-//			buttonVoiceRecordingStop.isEnabled = true
-//			audioRecorder?.record()
-//		}
         if audioRecorder == nil{
-            numberOfRecords += 1
-            print("Audio Recorder started")
-            let filename = getDirectory().appendingPathComponent("\(audioName).m4a")
+			os_log("Audio Recorder started recording audio", log: .default, type: .info)
+			let filename = getDirectory().appendingPathComponent("\(String(describing: audioName)).m4a")
             
             let settings = [AVFormatIDKey: Int(kAudioFormatMPEG4AAC), AVSampleRateKey: 12000, AVNumberOfChannelsKey: 1, AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue]
             do {
@@ -52,23 +45,18 @@ class InfoViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecord
 				buttonVoiceRecordingPlay.isEnabled = false
 				buttonVoiceRecording.setImage(UIImage(systemName: "stop.circle"), for: .normal)
             } catch {
-                print("Problem!")
+				os_log("Problem recording audio in InfoViewController.swift", log: .default, type: .info)
             }
         } else {
             audioRecorder.stop()
             audioRecorder = nil
 			buttonVoiceRecording.setImage(UIImage(systemName: "mic"), for: .normal)
             buttonVoiceRecordingPlay.isEnabled = true
-            UserDefaults.standard.set(numberOfRecords,forKey: "index")
         }
 	}
 	
-	@IBAction func buttonVoiceRecordingStopPressed(_ sender: Any) {
-        print("This does nothing right now!")
-	}
-	
 	@IBAction func buttonVoiceRecordingPlayPressed(_ sender: Any) {
-        let path = getDirectory().appendingPathComponent("\(audioName).m4a")
+		let path = getDirectory().appendingPathComponent("\(String(describing: audioName)).m4a")
 
 			do {
 				try audioPlayer = AVAudioPlayer(contentsOf:	path)
@@ -76,27 +64,21 @@ class InfoViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecord
 				audioPlayer!.prepareToPlay()
 				audioPlayer!.play()
 			} catch let error as NSError {
-				print("audioPlayer error: \(error.localizedDescription)")
+				os_log("AudioPlayer error: %@", log: .default, type: .info, error.localizedDescription)
 			}
 		}
         
     override func viewDidLoad() {
         super.viewDidLoad()
-            let currentReminder = sharedReminderCollection?.getCurrentReminder()
-        
-        //print(currentReminder?.getAudioName())
+		let currentReminder = sharedReminderCollection?.getCurrentReminder()
         audioName = currentReminder?.getAudioName()
         recordingSession = AVAudioSession.sharedInstance()
         AVAudioSession.sharedInstance().requestRecordPermission{ (hasPermission) in
-            if hasPermission{
-            print("We have Permission to use Microphone.")
+            if hasPermission {
+				os_log("We have Permission to use Microphone.", log: .default, type: .info)
             }
         }
-        
-        //Temporary get Current recording
-        if let number:Int = UserDefaults.standard.object(forKey: "index") as? Int{
-            numberOfRecords = number
-        }
+		
 		setupNewReminder()
 		
 		labelFrequency.textAlignment = .center
@@ -107,21 +89,22 @@ class InfoViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecord
         let documentDirectory=paths[0]
         return documentDirectory
     }
+	
 //	AVAudioRecorderDelegate functions
 	func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
 		buttonVoiceRecording.isEnabled = true
 	}
 	
 	func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
-		print("Audio Play Decode Error")
+		os_log("Audio Play Decode Error", log: .default, type: .info)
 	}
 	
 	func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-		print("Audio Recording Done")
+		os_log("Audio Recording Done", log: .default, type: .info)
 	}
 	
 	func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
-		print("Audio Record Encode Error")
+		os_log("Audio Record Encode Error", log: .default, type: .info)
 	}
 	
 	func setupNewReminder() {

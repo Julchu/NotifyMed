@@ -10,12 +10,12 @@ import UIKit
 import os.log
 
 class ReminderNotification {
-	func setReminder(days: [Bool], uuids: [String]) {
+	func setReminder(name: String, days: [Bool], uuids: [String]) {
 		// Notification content
 		let content = UNMutableNotificationContent()
-		content.title = "NotifyMed"
-		content.subtitle = "Reminder to take your medicine"
-		content.body = "Click okay to confirm that you've taken your medicine"
+		content.title = "NotifyMed Reminder"
+		content.subtitle = "Reminder to take \(name)"
+		content.body = "Click okay to confirm you've taken your medicine"
 		content.sound = UNNotificationSound.default
 		content.badge = 1
 		content.categoryIdentifier = "categories"

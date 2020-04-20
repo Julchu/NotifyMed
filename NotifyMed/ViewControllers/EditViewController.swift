@@ -139,6 +139,6 @@ class EditViewController: UIViewController, UITextFieldDelegate {
 		currentReminder?.setEndDate(endDate: pickerEnd.date)
 		
 		let reminderNotification = ReminderNotification()
-		reminderNotification.setReminder(days: (currentReminder?.getDays())!, uuids: (currentReminder?.getUuids())!)
+		reminderNotification.setReminder(name: (currentReminder?.getName())!, days: (currentReminder?.getDays())!, uuids: (currentReminder?.getUuids())!)
 	}
 }

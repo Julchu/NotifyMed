@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		notificationCenter.requestAuthorization(options: options) {
 			(didAllow, error) in
 			if !didAllow {
-				print("User has declined notifications")
+				os_log("User has declined notifications", log: .default, type: .info)
 			}
 		}
 		return true
@@ -107,7 +107,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 	func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
 
 		if response.notification.request.identifier == "Local Notification" {
-			print("Handling notifications with the Local Notification Identifier")
+			os_log("Handling notifications with the Local Notification Identifier", log: .default, type: .info)
 		}
 
 		completionHandler()

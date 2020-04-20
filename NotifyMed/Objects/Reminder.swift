@@ -54,7 +54,7 @@ class Reminder: NSObject, NSCoding {
 		self.uuids = uuids
 		
 		let reminderNotification = ReminderNotification()
-		reminderNotification.setReminder(days: self.days, uuids: self.uuids)
+		reminderNotification.setReminder(name: self.medicineName, days: self.days, uuids: self.uuids)
 		
 		os_log("Notification UUIDs for %@: %@", log: .default, type: .info, self.medicineName, self.uuids)
 	}

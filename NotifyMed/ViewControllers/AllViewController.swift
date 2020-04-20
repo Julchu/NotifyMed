@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import os.log
 
 //class MedicineInfoCell: UITableViewCell {
 //	@IBOutlet weak var medicineName: UILabel!
@@ -81,12 +82,12 @@ class AllViewController: UIViewController, UITableViewDelegate, UITableViewDataS
 			tableView.deselectRow(at: indexPath, animated: true)
 			performSegue(withIdentifier: "infoViewSegueFromAll", sender: sharedReminderCollection?.upcomingCollection[indexPath.row])
 			sharedReminderCollection?.setCurrentIndex(index: indexPath.row)
-			print("all")
+			os_log("AllViewController: All clicked", log: .default, type: .info)
 		} else if tableView == dismissedTableView {
 			tableView.deselectRow(at: indexPath, animated: true)
 			performSegue(withIdentifier: "infoViewSegueFromDismiss", sender: sharedReminderCollection?.upcomingCollection[indexPath.row])
 			sharedReminderCollection?.setCurrentIndex(index: indexPath.row)
-			print("dismiss")
+			os_log("AllViewController: Dismissed clicked", log: .default, type: .info)
 		}
 	}
 	
