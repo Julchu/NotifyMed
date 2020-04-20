@@ -49,7 +49,6 @@ class UpcomingViewController: UIViewController, UITableViewDelegate, UITableView
 	
 //	MARK:- Swipe actions
 //	Swipe right to dismiss
-
 /*
 	func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 		var dismissAction = UIContextualAction.init()

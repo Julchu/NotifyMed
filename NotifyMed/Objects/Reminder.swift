@@ -18,7 +18,7 @@ class Reminder: NSObject, NSCoding {
 	private var startDate: Date
 	private var endDate: Date
 	private var dismissed: Bool
-//	private var voiceRecording: NSURL
+    private var audioName : String
 	private var uuids: [String] = Array(repeating: "", count:7)
 	
 	struct Keys {
@@ -28,7 +28,7 @@ class Reminder: NSObject, NSCoding {
 		static let startDate = "startDate"
 		static let endDate = "endDate"
 		static let dismissed = "dismissed"
-//		static let voiceRecording = "voiceRecording"
+        static let audioName = "audioName"
 		static let uuids = "uuids"
 	}
 	
@@ -39,17 +39,18 @@ class Reminder: NSObject, NSCoding {
 		coder.encode(startDate, forKey: Keys.startDate)
 		coder.encode(endDate, forKey: Keys.endDate)
 		coder.encode(dismissed, forKey: Keys.dismissed)
-//		coder.encode(voiceRecording, forKey: Keys.voiceRecording)
-		coder.encode(uuids, forKey: Keys.uuids)
+    coder.encode(audioName,forKey: Keys.audioName)
+    coder.encode(uuids, forKey: Keys.uuids)
 	}
-	
-	init?(medicineName: String, days: [Bool], frequency: String, startDate: Date, endDate: Date, dismissed: Bool, uuids: [String]) {
+  
+	init?(medicineName: String, days: [Bool], frequency: String, startDate: Date, endDate: Date, dismissed: Bool, audioName: String, uuids: [String]) {
 		self.medicineName = medicineName
 		self.frequency = frequency
 		self.startDate = startDate
 		self.endDate = endDate
 		self.days = days
 		self.dismissed = dismissed
+        self.audioName = audioName
 		self.uuids = uuids
 		
 		let reminderNotification = ReminderNotification()
@@ -69,20 +70,20 @@ class Reminder: NSObject, NSCoding {
 		let startDateDecoded = (decoder.decodeObject(forKey: Keys.startDate) as? Date)!
 		let endDateDecoded = (decoder.decodeObject(forKey: Keys.endDate) as? Date)!
 		let dismissedDecoded = decoder.decodeBool(forKey: Keys.dismissed)
-//		let voiceRecordingDecoded = (decoder.decodeObject(forKey: Keys.voiceRecording) as? NSURL)!
-		let uuids = decoder.decodeObject(forKey: Keys.uuids)
-		
-		self.init(medicineName: medicineNameDecoded, days: daysDecoded, frequency: frequencyDecoded , startDate: startDateDecoded , endDate: endDateDecoded, dismissed: dismissedDecoded, uuids: uuids as! [String])
+    let uuids = decoder.decodeObject(forKey: Keys.uuids)
+    let audioNameDecoded = (decoder.decodeObject(forKey: Keys.audioName) as? String)!
+
+    self.init(medicineName: medicineNameDecoded, days: daysDecoded, frequency: frequencyDecoded , startDate: startDateDecoded , endDate: endDateDecoded, dismissed: dismissedDecoded, audioName: audioNameDecoded, uuids: uuids as! [String])
 	}
 	
 	func getUuids() -> [String] {
 		return self.uuids
 	}
-	
+  
 	func getName() -> String {
 		return self.medicineName
 	}
-	
+  
 	func getDays() -> [Bool] {
 		return self.days
 	}
@@ -98,10 +99,10 @@ class Reminder: NSObject, NSCoding {
 	func getEndDate() -> Date {
 		return self.endDate
 	}
-	
-//	func getVoiceRecording() -> NSURL {
-//		return self.voiceRecording
-//	}
+
+	func getAudioName()->String{
+		return self.audioName
+	}
 	
 	func isDismissed() -> Bool {
 		return self.dismissed
@@ -131,9 +132,9 @@ class Reminder: NSObject, NSCoding {
 		self.dismissed = dismissed
 	}
 	
-//	func setVoiceRecording(voiceRecording: NSURL) {
-//		self.voiceRecording = voiceRecording
-//	}
+    func setAudioName(audioName: String){
+        self.audioName = audioName
+	}
 
 //	Generating new strings
 	func setUuids(uuids: [String]) {

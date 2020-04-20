@@ -31,35 +31,57 @@ class InfoViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecord
 	
 	var audioPlayer: AVAudioPlayer!
 	var audioRecorder: AVAudioRecorder!
+    var recordingSession : AVAudioSession!
+    var numberOfRecords = 0
+    var audioName : String!
 	
 //	Setting recording button toggles
 	@IBAction func buttonVoiceRecordingPressed(_ sender: Any) {
-		if audioRecorder?.isRecording == false {
-			buttonVoiceRecordingPlay.isEnabled = false
-			buttonVoiceRecordingStop.isEnabled = true
-			audioRecorder?.record()
-		}
+//		if audioRecorder?.isRecording == false {
+//			buttonVoiceRecordingPlay.isEnabled = false
+//			buttonVoiceRecordingStop.isEnabled = true
+//			audioRecorder?.record()
+//		}
+        if audioRecorder == nil{
+            numberOfRecords += 1
+            print("Audio Recorder started")
+            let filename = getDirectory().appendingPathComponent("\(audioName).m4a")
+            
+            let settings = [AVFormatIDKey: Int(kAudioFormatMPEG4AAC), AVSampleRateKey: 12000, AVNumberOfChannelsKey: 1, AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue]
+            
+            do{
+                audioRecorder = try AVAudioRecorder(url: filename, settings: settings)
+                audioRecorder.delegate = self
+                audioRecorder.record()
+//                            buttonVoiceRecordingPlay.isEnabled = false
+                            //buttonVoiceRecordingStop.isEnabled = true
+            }catch{
+                print("Problem!")
+                
+            }
+        }else{
+            audioRecorder.stop()
+            audioRecorder = nil
+            //buttonVoiceRecordingPlay.isEnabled = true
+            //buttonVoiceRecordingStop.isEnabled = false
+            UserDefaults.standard.set(numberOfRecords,forKey: "index")
+        }
+        
+        
 	}
 	
 	@IBAction func buttonVoiceRecordingStopPressed(_ sender: Any) {
-		buttonVoiceRecordingStop.isEnabled = false
-		buttonVoiceRecordingPlay.isEnabled = true
-		buttonVoiceRecording.isEnabled = true
-		
-		if audioRecorder?.isRecording == true {
-			audioRecorder?.stop()
-		} else {
-			audioPlayer?.stop()
-		}
+        print("This does nothing right now!")
 	}
 	
 	@IBAction func buttonVoiceRecordingPlayPressed(_ sender: Any) {
-		if audioRecorder?.isRecording == false {
-			buttonVoiceRecordingStop.isEnabled = true
-			buttonVoiceRecording.isEnabled = false
-			
+//		if audioRecorder?.isRecording == false {
+//			buttonVoiceRecordingStop.isEnabled = true
+//			buttonVoiceRecording.isEnabled = false
+        let path = getDirectory().appendingPathComponent("\(audioName).m4a")
+
 			do {
-				try audioPlayer = AVAudioPlayer(contentsOf:	(audioRecorder?.url)!)
+				try audioPlayer = AVAudioPlayer(contentsOf:	path)julian
 				audioPlayer!.delegate = self
 				audioPlayer!.prepareToPlay()
 				audioPlayer!.play()
@@ -67,47 +89,35 @@ class InfoViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecord
 				print("audioPlayer error: \(error.localizedDescription)")
 			}
 		}
-	}
-	
+        
     override func viewDidLoad() {
         super.viewDidLoad()
+            let currentReminder = sharedReminderCollection?.getCurrentReminder()
+        
+        //print(currentReminder?.getAudioName())
+        audioName = currentReminder?.getAudioName()
+        print(audioName!)
+        recordingSession = AVAudioSession.sharedInstance()
+        AVAudioSession.sharedInstance().requestRecordPermission{ (hasPermission) in
+            if hasPermission{
+            print("We have Permission to use Microphone.")
+            }
+        }
+        
+        //Temporary get Current recording
+        if let number:Int = UserDefaults.standard.object(forKey: "index") as? Int{
+            numberOfRecords = number
+        }
 		setupNewReminder()
 		
 		labelFrequency.textAlignment = .center
-		
-		setupAudio()
     }
-	
-	func setupAudio() {
-//		Audio Recording
-		let fileMgr = FileManager.default
-		let dirPaths = fileMgr.urls(for: .documentDirectory, in: .userDomainMask)
-		let soundFileURL = dirPaths[0].appendingPathComponent("recording.caf")
-		
-//		currentReminder?.setVoiceRecording(voiceRecording: soundFileURL as NSURL)
-		
-		let recordSettings =
-			[AVEncoderAudioQualityKey: AVAudioQuality.min.rawValue,
-			 AVEncoderBitRateKey: 16,
-			 AVNumberOfChannelsKey: 2,
-			 AVSampleRateKey: 44100.0] as [String : Any]
-		
-		let audioSession = AVAudioSession.sharedInstance()
-		
-		do {
-			try audioSession.setCategory(AVAudioSession.Category.playAndRecord)
-		} catch let error as NSError {
-			print("audioSession error: \(error.localizedDescription)")
-		}
-		
-		do {
-			try audioRecorder = AVAudioRecorder(url: soundFileURL, settings: recordSettings as [String : AnyObject])
-			audioRecorder?.prepareToRecord()
-		} catch let error as NSError {
-			print("audioSession error: \(error.localizedDescription)")
-		}
-	}
-	
+    
+    func getDirectory()->URL{
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentDirectory=paths[0]
+        return documentDirectory
+    }
 //	AVAudioRecorderDelegate functions
 	func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
 		buttonVoiceRecording.isEnabled = true

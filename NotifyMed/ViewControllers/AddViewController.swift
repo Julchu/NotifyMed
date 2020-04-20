@@ -24,9 +24,9 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	@IBOutlet weak var pickerStart: UIDatePicker!
 	@IBOutlet weak var pickerEnd: UIDatePicker!
 	var reminder: Reminder!
+    var currentIndex = 0
 
 	var appDelegate = UIApplication.shared.delegate as? AppDelegate
-
 	
 	@IBAction func buttonSundayPressed(_ sender: Checkbox) {
 		buttonSunday.toggle()
@@ -85,7 +85,6 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		textMedicineName.resignFirstResponder()
 		textFrequency.resignFirstResponder()
 	}
-	
 	func textFieldDidBeginEditing(_ textField: UITextField) {
 		buttonSave.isEnabled = false
 	}
@@ -134,7 +133,7 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	func addReminder() -> Reminder {
 		let days = [buttonSunday.getBool(), buttonMonday.getBool(), buttonTuesday.getBool(), buttonWednesday.getBool(), buttonThursday.getBool(), buttonFriday.getBool(), buttonSaturday.getBool()]
 		let uuids = [UUID().uuidString, UUID().uuidString, UUID().uuidString, UUID().uuidString, UUID().uuidString, UUID().uuidString, UUID().uuidString]
-		return Reminder(medicineName: textMedicineName.text!, days: days, frequency: textFrequency.text!, startDate: pickerStart.date, endDate: pickerEnd.date, dismissed: false, uuids: uuids)!
+		return Reminder(medicineName: textMedicineName.text!, days: days, frequency: textFrequency.text!, startDate: pickerStart.date, endDate: pickerEnd.date, dismissed: false, audioName: "audio\(currentIndex).mp4", uuids: uuids)!
 	}
 }
 
