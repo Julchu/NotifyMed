@@ -18,8 +18,14 @@
 - Learning about Swift 5, being able to design and transform MVCs into a real product
 - Building a solution to a problem that I personally suffer from
 - Learning and developing in a technology (iOS) that I've always been interested in learning
-    
+
+## Not working:
+- Notification start and end date
+- Removal of behavior where notification restarts at app restart
+
 ## Next step:
+- Implement automatically dismissed reminders based on recorded memo
+- Implement removed reminders
 - Calendar interface
 - Online storage system
 - Create a companion app for medical practitioners/caretakers to track their patients' reminders
