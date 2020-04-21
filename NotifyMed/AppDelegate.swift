@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	let notificationCenter = UNUserNotificationCenter.current()
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
-		
+		Thread.sleep(forTimeInterval: 0.05)
 
 		notificationCenter.delegate = self
 		
@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				os_log("User has declined notifications", log: .default, type: .info)
 			}
 		}
+		
 		return true
 	}
 

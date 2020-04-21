@@ -50,7 +50,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="s0D-ND-cv6"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Upcoming Reminders" id="wJD-w3-d3S">
+                    <navigationItem key="navigationItem" title="Ongoing Reminders" id="wJD-w3-d3S">
                         <barButtonItem key="rightBarButtonItem" title="Add" id="NP3-6I-NRX">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="show" identifier="addViewSegue" id="IsO-Za-qGm"/>
