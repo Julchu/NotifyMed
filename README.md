@@ -24,6 +24,8 @@
 - Removal of behavior where notification restarts at app restart
 
 ## Next step:
+- Implement automatically dismissed reminders based on recorded memo
+- Implement removed reminders
 - Calendar interface
 - Online storage system
 - Create a companion app for medical practitioners/caretakers to track their patients' reminders
