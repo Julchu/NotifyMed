@@ -18,7 +18,11 @@
 - Learning about Swift 5, being able to design and transform MVCs into a real product
 - Building a solution to a problem that I personally suffer from
 - Learning and developing in a technology (iOS) that I've always been interested in learning
-    
+
+## Not working:
+- Notification start and end date
+- Notification restarting at app restart
+
 ## Next step:
 - Calendar interface
 - Online storage system
