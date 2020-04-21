@@ -1,0 +1,29 @@
+Hi, my name is Julian, and my partner's name is Dan
+
+We built an app called NotifyMed to help medical patients with poor memory by reminding them to take their medication. 
+
+Through some personal research, we found that a lot of elderly patients struggled with two problems. Some of them would forget that they have a prescribed medication to take. Others would forget if they've taken their prescription for the day. 
+
+Our app helps solve these problems by allowing patients to schedule medical notifications and record audio memos to track if they've taken their prescribed medication.
+
+// Switch to app and click add button
+The main view of the app will display all ongoing reminders. Clicking the add button opens the view to add a reminder. 
+    // Add label
+	- User must add a reminder label, such as the name of their medicine
+	- They can also choose the frequency of which the reminders will occur throughout the week, as well as the weekly frequency and start and end dates
+    // Save reminder
+	- For the purpose of demonstrating the notifications, I have set the reminders to occur immediately after saving
+
+// Click reminder
+Users can also click on a reminder to view or edit their reminder, as well as record or listen to their audio memo. 
+	- Editing the reminders will update the occurrences of their notifications.
+	- Recording a memo will save it to that specific reminder
+    // Record memo: "I have taken Tylenol on April 21, 2020"
+
+// Click back, and delete reminder
+When users are done with their prescription, they will be able to delete their reminders, which will remove the notifications set by the reminder, as well as the audio recording. 
+
+Hopefully with this app, medical patients who usually forget if they've taken their medication will not miss another day's medication with NotifyMed
+
+
+
