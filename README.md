@@ -21,7 +21,7 @@
 
 ## Not working:
 - Notification start and end date
-- Notification restarting at app restart
+- Removal of behavior where notification restarts at app restart
 
 ## Next step:
 - Calendar interface
