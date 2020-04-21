@@ -33,5 +33,5 @@
 - Android alternative
 
 ## Contributors:
-- Julian Chu (Github: julchu)
+- Julian Chu (GitHub: julchu)
 - Dan Huynh (GitHub: danhuynh1)
