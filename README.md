@@ -1,3 +1,5 @@
+![NotifyMed](./Images/NotifyMedPoster.png)
+
 ## Inspiration
   - Medical patients sometimes struggle with forgetfulness and don't remember taking their routinely medication
   
